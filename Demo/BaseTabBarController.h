@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  BaseTabBarController.h
 //  Demo
 //
 //  Created by jianghouyu on 16/1/20.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
-
+@interface BaseTabBarController : UITabBarController
 
 @end
-

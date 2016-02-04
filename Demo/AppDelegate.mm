@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -17,7 +18,29 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self makeWindowVisible:launchOptions];
+    
+    [self basicSetup];
+    
     return YES;
+}
+
+- (void)makeWindowVisible : (NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    
+    if (_tabBarController == nil) {
+        _tabBarController = [[BaseTabBarController alloc] init];
+    }
+    self.window.rootViewController = _tabBarController;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)basicSetup {
+    [[UITextField appearance] setTintColor:[UIColor grayColor]];
+    [[UITextView appearance] setTintColor:[UIColor grayColor]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
