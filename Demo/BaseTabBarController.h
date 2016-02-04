@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseTabBarController : UITabBarController
+@interface BaseTabBarController : UITabBarController <UITabBarControllerDelegate>
+
+- (void)setupTabBarItems;
+- (void)pushToViewController : (UIViewController *)viewController animated : (BOOL)animated;
+- (void)presentToViewController : (UIViewController *)viewController animated : (BOOL)animated completion : (void (^)(void))comletion;
 
 @end

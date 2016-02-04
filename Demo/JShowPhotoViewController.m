@@ -7,6 +7,7 @@
 //
 
 #import "JShowPhotoViewController.h"
+#import "UIContants.h"
 
 @interface JShowPhotoViewController ()
 
@@ -17,6 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.image = self.image;
+    imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
+    [imageView addGestureRecognizer:tap];
+    [self.view addSubview:imageView];
+}
+
+-(void) close {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

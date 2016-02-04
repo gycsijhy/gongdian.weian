@@ -10,4 +10,11 @@
 
 @implementation Menu
 
++ (NSDictionary *) JSONKeyPathsByPropertyKey {
+    return @{
+             @"iid":@"id",
+             @"menu":@"menu"
+             };
+}
+
 @end

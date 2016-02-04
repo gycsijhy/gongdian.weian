@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JAddSCJHTableViewController : UITableViewController
+@interface JAddSCJHTableViewController : UITableViewController {
+    NSMutableArray *resultArr;
+    NSArray *select1Arr;
+    NSArray *select2Arr;
+}
 
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@interface Menu : NSObject
+@interface Menu : MTLModel <MTLJSONSerializing>
+
+@property (nonatomic, readonly) NSString *iid;
+@property (nonatomic, readonly) NSString *menu;
 
 @end

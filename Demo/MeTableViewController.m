@@ -7,8 +7,12 @@
 //
 
 #import "MeTableViewController.h"
+#import "User.h"
 
 @interface MeTableViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *userPhotoView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userDepartLabel;
 
 @end
 
@@ -22,6 +26,23 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.contentInset = UIEdgeInsetsMake(-1.0f, 0.0f, 0.0f, 0.0);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateMeView];
+}
+
+- (void)updateMeView {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    self.userNameLabel.text = user.uname;
+    self.userDepartLabel.text = user.pname;
+
+//        NSString *avatarHeight = [NSString stringWithFormat:@"%.f", _avatarImageView.frame.size.height * 2];
+//        NSURL *URL = [BaseHelper qiniuImageCenter:_userEntity.avatar withWidth:avatarHeight withHeight:avatarHeight];
+//        [_avatarImageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,14 +52,16 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 1.0f : UITableViewAutomaticDimension;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return section == 0 ? nil : @"";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 /*

@@ -10,4 +10,18 @@
 
 @implementation JModifyProject
 
+- (void)modifyProject {
+    NSString *result = nil;
+    n_webserviceSoap12Binding *binding = [n_webservice n_webserviceSoap12Binding];
+    n_webservice_modify_project_json *request = [[n_webservice_modify_project_json alloc] init];
+    
+    n_webserviceSoap12BindingResponse *response = [binding modify_project_jsonUsingParameters:request];
+    for (id mine in response.bodyParts) {
+        if ([mine isKindOfClass:[n_webservice_modify_project_jsonResponse class]]) {
+            [request release];
+            result = [mine modify_project_jsonResult];
+        }
+    }
+}
+
 @end

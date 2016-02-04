@@ -7,7 +7,29 @@
 //
 
 #import "JGetDepart.h"
+#import "Depart.h"
+
 
 @implementation JGetDepart
+
+- (NSMutableArray *)getDepart {
+    NSString *result = nil;
+    n_webserviceSoap12Binding *binding = [n_webservice n_webserviceSoap12Binding];
+    n_webservice_get_department_json *request = [[n_webservice_get_department_json alloc] init];
+    
+    n_webserviceSoap12BindingResponse *response = [binding get_department_jsonUsingParameters:request];
+    for (id mine in response.bodyParts) {
+        if ([mine isKindOfClass:[n_webservice_get_department_jsonResponse class]]) {
+            [request release];
+            result = [mine get_department_jsonResult];
+        }
+    }
+    NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSMutableArray *results = dict[@"items"];
+    NSValueTransformer *transformer = [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Depart.class];
+    results = [transformer transformedValue:results];
+    return results;
+}
 
 @end

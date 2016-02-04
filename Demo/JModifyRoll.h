@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
 
 @interface JModifyRoll : NSObject
+
+- (void)modifyRoll :(NSString *)uid :(NSString *)menuid :(NSString *)flag;
 
 @end

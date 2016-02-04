@@ -10,4 +10,11 @@
 
 @implementation Depart
 
++ (NSDictionary *) JSONKeyPathsByPropertyKey {
+    return @{
+             @"pid":@"pid",
+             @"pname":@"pname"
+             };
+}
+
 @end

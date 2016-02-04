@@ -10,4 +10,6 @@
 
 @interface JShowPhotoViewController : UIViewController
 
+@property (strong, nonatomic) UIImage *image;
+
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *SimpleTableIdentifier;
+
 @interface Contants : NSObject
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
 
 @interface JUpdateIMEI : NSObject
+
+- (void)updateIMEI : (NSString *)sfzh : (NSString *)IMEI;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JAddUserTableViewController : UITableViewController
+@interface JAddUserTableViewController : UITableViewController {
+    NSMutableArray *resultArr;
+}
 
 @end

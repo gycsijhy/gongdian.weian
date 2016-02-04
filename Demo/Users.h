@@ -10,4 +10,6 @@
 
 @interface Users : User
 
+@property (nonatomic, readonly) NSString *iid;
+
 @end

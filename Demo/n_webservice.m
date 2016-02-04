@@ -6267,7 +6267,7 @@
 	[request setValue:@"wsdl2objc" forHTTPHeaderField:@"User-Agent"];
 	[request setValue:soapAction forHTTPHeaderField:@"SOAPAction"];
 	[request setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-	[request setValue:[NSString stringWithFormat:@"%u", [bodyData length]] forHTTPHeaderField:@"Content-Length"];
+	[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[bodyData length]] forHTTPHeaderField:@"Content-Length"];
 	[request setValue:self.address.host forHTTPHeaderField:@"Host"];
 	[request setHTTPMethod: @"POST"];
 	// set version 1.1 - how?
@@ -6334,7 +6334,7 @@
 	}
 	
 	if(binding.logXMLInOut) {
-		NSLog(@"ResponseStatus: %u\n", [httpResponse statusCode]);
+		NSLog(@"ResponseStatus: %ld\n", (long)[httpResponse statusCode]);
 		NSLog(@"ResponseHeaders:\n%@", [httpResponse allHeaderFields]);
 	}
 	
@@ -6432,7 +6432,7 @@ parameters:(n_webservice_uf_get_person_info *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6525,7 +6525,7 @@ parameters:(n_webservice_u_getdata_for_sql *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6618,7 +6618,7 @@ parameters:(n_webservice_uf_get_person_photo *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6711,7 +6711,7 @@ parameters:(n_webservice_checkpassword *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6804,7 +6804,7 @@ parameters:(n_webservice_uf_send_sms *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6897,7 +6897,7 @@ parameters:(n_webservice_uf_regiest *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -6990,7 +6990,7 @@ parameters:(n_webservice_uf_check_imei *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7083,7 +7083,7 @@ parameters:(n_webservice_uf_check_uid *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7176,7 +7176,7 @@ parameters:(n_webservice_uf_update_imei *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7269,7 +7269,7 @@ parameters:(n_webservice_get_person_info_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7362,7 +7362,7 @@ parameters:(n_webservice_uf_check_imei_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7455,7 +7455,7 @@ parameters:(n_webservice_get_department_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7548,7 +7548,7 @@ parameters:(n_webservice_modify_department *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7641,7 +7641,7 @@ parameters:(n_webservice_get_users_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7734,7 +7734,7 @@ parameters:(n_webservice_modify_users *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7827,7 +7827,7 @@ parameters:(n_webservice_get_menu_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -7920,7 +7920,7 @@ parameters:(n_webservice_modify_rolls *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8013,7 +8013,7 @@ parameters:(n_webservice_save_photo_to_file *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8106,7 +8106,7 @@ parameters:(n_webservice_get_project_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8199,7 +8199,7 @@ parameters:(n_webservice_get_users_by_menu *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8292,7 +8292,7 @@ parameters:(n_webservice_modify_project_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8385,7 +8385,7 @@ parameters:(n_webservice_uf_test *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -8848,7 +8848,7 @@ static n_webserviceSoapBinding_envelope *n_webserviceSoapBindingSharedEnvelopeIn
 	[request setValue:@"wsdl2objc" forHTTPHeaderField:@"User-Agent"];
 	[request setValue:soapAction forHTTPHeaderField:@"SOAPAction"];
 	[request setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-	[request setValue:[NSString stringWithFormat:@"%u", [bodyData length]] forHTTPHeaderField:@"Content-Length"];
+	[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[bodyData length]] forHTTPHeaderField:@"Content-Length"];
 	[request setValue:self.address.host forHTTPHeaderField:@"Host"];
 	[request setHTTPMethod: @"POST"];
 	// set version 1.1 - how?
@@ -8915,7 +8915,7 @@ static n_webserviceSoapBinding_envelope *n_webserviceSoapBindingSharedEnvelopeIn
 	}
 	
 	if(binding.logXMLInOut) {
-		NSLog(@"ResponseStatus: %u\n", [httpResponse statusCode]);
+		NSLog(@"ResponseStatus: %ld\n", (long)[httpResponse statusCode]);
 		NSLog(@"ResponseHeaders:\n%@", [httpResponse allHeaderFields]);
 	}
 	
@@ -9013,7 +9013,7 @@ parameters:(n_webservice_uf_get_person_info *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9106,7 +9106,7 @@ parameters:(n_webservice_u_getdata_for_sql *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9199,7 +9199,7 @@ parameters:(n_webservice_uf_get_person_photo *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9292,7 +9292,7 @@ parameters:(n_webservice_checkpassword *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9385,7 +9385,7 @@ parameters:(n_webservice_uf_send_sms *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9478,7 +9478,7 @@ parameters:(n_webservice_uf_regiest *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9571,7 +9571,7 @@ parameters:(n_webservice_uf_check_imei *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9664,7 +9664,7 @@ parameters:(n_webservice_uf_check_uid *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9757,7 +9757,7 @@ parameters:(n_webservice_uf_update_imei *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9850,7 +9850,7 @@ parameters:(n_webservice_get_person_info_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -9943,7 +9943,7 @@ parameters:(n_webservice_uf_check_imei_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10036,7 +10036,7 @@ parameters:(n_webservice_get_department_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10129,7 +10129,7 @@ parameters:(n_webservice_modify_department *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10222,7 +10222,7 @@ parameters:(n_webservice_get_users_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10315,7 +10315,7 @@ parameters:(n_webservice_modify_users *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10408,7 +10408,7 @@ parameters:(n_webservice_get_menu_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10501,7 +10501,7 @@ parameters:(n_webservice_modify_rolls *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10594,7 +10594,7 @@ parameters:(n_webservice_save_photo_to_file *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10687,7 +10687,7 @@ parameters:(n_webservice_get_project_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10780,7 +10780,7 @@ parameters:(n_webservice_get_users_by_menu *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10873,7 +10873,7 @@ parameters:(n_webservice_modify_project_json *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];
@@ -10966,7 +10966,7 @@ parameters:(n_webservice_uf_test *)aParameters
 			NSLog(@"ResponseBody:\n%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
 		}
 		
-		doc = xmlParseMemory([responseData bytes], [responseData length]);
+		doc = xmlParseMemory([responseData bytes], (int)[responseData length]);
 		
 		if (doc == NULL) {
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Errors while parsing returned XML" forKey:NSLocalizedDescriptionKey];

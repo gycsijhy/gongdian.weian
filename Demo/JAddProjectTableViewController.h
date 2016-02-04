@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaiduMapAPI_Location/BMKLocationComponent.h"
 
-@interface JAddProjectTableViewController : UITableViewController
+@interface JAddProjectTableViewController : UITableViewController <BMKLocationServiceDelegate> {
+    BMKLocationService *_loaction;
+    NSMutableArray *imageData;
+}
+
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface JImagePickerHelper : NSObject
+@interface JImagePickerHelper : NSObject <UINavigationControllerDelegate>
+
+@property (weak,nonatomic) UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate> *hostViewController;
+
+- (void)takePhoto;
 
 @end

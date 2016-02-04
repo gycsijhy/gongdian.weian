@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
 
 @interface JModifyDepart : NSObject
+
+- (void)modifyDepart : (NSString *)action : (NSString *)pid : (NSString *)pname;
 
 @end

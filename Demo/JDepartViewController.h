@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JDepartViewController : UIViewController
+@interface JDepartViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
+    UITableView *myTableView;
+    NSMutableArray *resultArr;
+}
 
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JHomeViewController : UIViewController
+@interface JHomeViewController : UIViewController <UIWebViewDelegate>{
+    UIWebView *webView;
+    UIActivityIndicatorView *activityIndicatorView;
+}
 
 @end

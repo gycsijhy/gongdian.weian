@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
 
 @interface JSendSMS : NSObject
+
+- (NSString *)sendSMS : (NSString *)number;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "Contants.h"
 
+static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+
 @implementation Contants
 
 @end

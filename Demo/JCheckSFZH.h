@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
+#import "JSendSMS.h"
 
 @interface JCheckSFZH : NSObject
+
+- (NSString *)checkSFZH : (NSString *)sfzh;
+
+- (NSString *)sendCode : (NSString *)sjhm;
 
 @end

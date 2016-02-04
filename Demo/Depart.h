@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Mantle/Mantle.h"
 
-@interface Depart : NSObject
+@interface Depart : MTLModel <MTLJSONSerializing>
+
+@property (nonatomic, readonly) NSString *pid;
+@property (nonatomic, readonly) NSString *pname;
 
 @end

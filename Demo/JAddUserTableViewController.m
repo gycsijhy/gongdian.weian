@@ -7,8 +7,16 @@
 //
 
 #import "JAddUserTableViewController.h"
+#import "Depart.h"
+#import "JGetDepart.h"
 
-@interface JAddUserTableViewController ()
+@interface JAddUserTableViewController () <UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *nameText;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UITextField *departText;
+@property (weak, nonatomic) IBOutlet UIPickerView *departSelect;
+@property (strong, nonatomic) IBOutlet UIToolbar *toobBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
@@ -22,6 +30,30 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(act)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    
+    _nameText.inputView = _datePicker;
+    _nameText.inputAccessoryView = _toobBar;
+    
+//    _departText.inputView = _departSelect;
+//    _departText.inputAccessoryView = _toobBar;
+    _departText.delegate = self;
+    _departSelect.delegate = self;
+    _departSelect.dataSource = self;
+//    JGetDepart *getDepart = [[JGetDepart alloc] init];
+//    resultArr = [getDepart getDepart];
+    
+}
+
+- (void)act {
+    
+}
+
+- (IBAction)done:(id)sender {
+    [_nameText endEditing:YES];
+    [_departText endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,16 +61,56 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - PickView delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [resultArr count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    Depart *depart = [resultArr objectAtIndex:row];
+    return depart.pname;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField.placeholder isEqualToString:@"姓名"]) {
+        //_nameText.text = _datePicker.
+    }
+    else if ([textField.placeholder isEqualToString:@"部门"]) {
+        NSInteger row = [_departSelect selectedRowInComponent:0];
+        Depart *depart = [resultArr objectAtIndex:row];
+        _departText.text = depart.pname;
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if ([textField.placeholder isEqualToString:@"部门"]) {
+        _departText.inputView = _departSelect;
+        _departText.inputAccessoryView = _toobBar;
+        JGetDepart *getDepart = [[JGetDepart alloc] init];
+        resultArr = [getDepart getDepart];
+    }
+    
+}
+
+
+#pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 1.0f : UITableViewAutomaticDimension;
+}
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    return section == 0 ? nil : @"";
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"%ld",(long)[indexPath row]);
+//    NSLog(@"%ld",(long)indexPath.section);
 }
 
 /*

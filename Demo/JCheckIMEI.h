@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
+#import "User.h"
 
 @interface JCheckIMEI : NSObject
+
+- (NSArray *)getCheckIMEIResult : (NSString *) number;
 
 @end

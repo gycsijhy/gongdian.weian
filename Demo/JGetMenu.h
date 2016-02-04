@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "n_webservice.h"
 
 @interface JGetMenu : NSObject
+
+- (NSArray *) getMenu : (NSString *) uids;
 
 @end

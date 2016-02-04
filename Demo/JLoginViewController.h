@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MZTimerLabel.h"
 
-@interface JLoginViewController : UIViewController
+@interface JLoginViewController : UIViewController <MZTimerLabelDelegate> {
+    UILabel *timer_show;
+}
+
+@property (nonatomic,retain) NSString *returnCode;
+@property (nonatomic,retain) UITextField *sfzh;
+@property (nonatomic,retain) UITextField *phoneNumber;
+@property (nonatomic,retain) UIButton *getCode;
+@property (nonatomic,retain) IBOutlet UIButton *btn;
+@property (strong,nonatomic) UIImageView *mySplashView;
 
 @end

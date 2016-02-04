@@ -7,8 +7,14 @@
 //
 
 #import "JAddProjectTableViewController.h"
+#import "JImagePickerHelper.h"
+#import "JShowPhotoViewController.h"
+#import "User.h"
 
 @interface JAddProjectTableViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *locationText;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *kcryText;
 
 @end
 
@@ -16,13 +22,141 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    imageData = [NSMutableArray array];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    self.kcryText.text = user.uname;
+    
+    self.scrollView.scrollsToTop = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.tag = NSIntegerMax;
+    self.scrollView.hidden = YES;
+    for (NSInteger i=0;i<9; i++) {
+        float x = 15 + 75*(i%3);
+        float y = i%3*75;
+        UIImageView *thumb1 = [[UIImageView  alloc] initWithFrame:CGRectMake(x, y, 70, 70)];
+        thumb1.tag = i+1;
+        [self.scrollView addSubview:thumb1];
+    }
+    
+    _loaction = [[BMKLocationService alloc] init];
+    _loaction.delegate = self;
+    [_loaction startUserLocationService];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateMeView];
+}
+
+- (void)takePhoto {
+    if (imageData.count < 3) {
+        JImagePickerHelper *helper = [[JImagePickerHelper alloc] init];
+        helper.hostViewController = self;
+        [helper takePhoto];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary<NSString *,id> *)editingInfo {
+//    for (id i in imageData) {
+//        self.imageView.image = [UIImage imageWithData:i];
+//    }
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    [imageData addObject:data];
+    NSLog(@"%lu",(unsigned long)imageData.count);
+//    self.imageView.image = [UIImage imageWithData:data];
+    [self showPhoto:imageData];
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showPhoto : (NSMutableArray *)arr{
+    if (arr.count>0) {
+        self.scrollView.hidden = NO;
+//        CGRect temp = self.scrollView.frame;
+//        temp.size.width =(5+75*arr.count);
+//        self.scrollView.frame = temp;
+        for (int i=0; i<5; i++) {
+            UIImageView *thumbView = (UIImageView *)[self.scrollView viewWithTag:i+1];
+            thumbView.contentMode = UIViewContentModeScaleAspectFill;
+            //thumbView.backgroundColor = [UIColor lightGrayColor];
+            thumbView.clipsToBounds = YES;
+            if (i<arr.count) {
+                thumbView.frame = CGRectMake((15+75*i), .5, 70, 70);
+                thumbView.hidden = NO;
+                thumbView.image = [UIImage imageWithData:[arr objectAtIndex:i]];
+                thumbView.userInteractionEnabled = YES;
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cz :)];
+                [thumbView addGestureRecognizer:singleTap];
+            }
+        }
+    }
+}
+
+- (void)removePhoto : (NSMutableArray *)arr{
+    if (arr.count>0) {
+        for (int i=0; i<5; i++) {
+            UIImageView *thumbView = (UIImageView *)[self.scrollView viewWithTag:i+1];
+            thumbView.contentMode = UIViewContentModeScaleAspectFill;
+            thumbView.clipsToBounds = YES;
+            if (i<arr.count) {
+                thumbView.frame = CGRectMake((15+75*i), .5, 70, 70);
+                thumbView.hidden = NO;
+                thumbView.image = nil;
+            }
+        }
+    }
+}
+
+- (void)cz :(id)sender {
+    UIView *view = [sender view];
+    
+    NSLog(@"%ld",(long)view.tag);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *actionRead = [UIAlertAction actionWithTitle:@"查看原图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIImage *image =[UIImage imageWithData:[imageData objectAtIndex:view.tag-1]];
+        JShowPhotoViewController *vc = [[JShowPhotoViewController alloc] init];
+        vc.image = image;
+        [self presentViewController:vc animated:YES completion:nil];
+    }];
+    UIAlertAction *actionDelete = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self removePhoto:imageData];
+        [imageData removeObjectAtIndex:view.tag-1];
+        [self showPhoto:imageData];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:actionRead];
+    [alertController addAction:actionDelete];
+    [alertController addAction:cancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    //NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    self.locationText.text = [NSString stringWithFormat:@"纬度 %f  经度 %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+    [_loaction stopUserLocationService];
+}
+
+- (void)updateMeView {
+//    self.userNameLabel.text = self.user.uname;
+//    self.userDepartLabel.text = self.user.pname;
+//    self.userPhoneLabel.text = self.user.pcode;
+    
+    //        NSString *avatarHeight = [NSString stringWithFormat:@"%.f", _avatarImageView.frame.size.height * 2];
+    //        NSURL *URL = [BaseHelper qiniuImageCenter:_userEntity.avatar withWidth:avatarHeight withHeight:avatarHeight];
+    //        [_avatarImageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -31,15 +165,19 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    //NSLog(@"%ld",(long)section);
+    return section == 0 ? 1.0f : UITableViewAutomaticDimension;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    return section == 0 ? nil : @"";
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

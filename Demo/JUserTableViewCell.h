@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface JUserTableViewCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *bmLabel;
+@property (retain, nonatomic) IBOutlet UILabel *xmLabel;
+@property (retain, nonatomic) IBOutlet UILabel *sjLabel;
 
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JWorkViewController : UIViewController
+@interface JWorkViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
+    UITableView *myTableView;
+    NSArray *resultArr;
+}
 
 @end
