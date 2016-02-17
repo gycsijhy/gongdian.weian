@@ -14,7 +14,7 @@
 
 @implementation JLoginHelper
 
-- (User *)loginHelper {
+- (Users *)loginHelper {
 //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 //    dispatch_async(queue, ^{
 //        JGetMenu *getMenu = [[JGetMenu alloc] init];
@@ -29,7 +29,7 @@
 //    });
     JCheckIMEI *checkIMEI = [[JCheckIMEI alloc] init];
     NSArray *arr = [checkIMEI getCheckIMEIResult:identifierNumber];
-    User *user = [arr objectAtIndex:0];
+    Users *user = [arr objectAtIndex:0];
     return user;
 //    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
 //    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"JUSER"];

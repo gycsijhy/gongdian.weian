@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Users.h"
 
 @interface JAddUserTableViewController : UITableViewController {
     NSMutableArray *resultArr;

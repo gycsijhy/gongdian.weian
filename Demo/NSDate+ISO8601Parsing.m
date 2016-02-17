@@ -168,15 +168,13 @@ static BOOL is_leap_year(unsigned year) {
  *  -W-d
  */
 + (NSDate *)dateWithString:(NSString *)str strictly:(BOOL)strict timeSeparator:(unichar)timeSep getRange:(out NSRange *)outRange {
-  //NSCalendar *gregorian = [[NSCalendar alloc]
-  //                         initWithCalendarIdentifier:NSGregorianCalendar];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDate *now = [NSDate date];
-  //NSDateComponents *dateComps = [gregorian components: NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate: now];
-    NSDateComponents *dateComps = [gregorian components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+  NSCalendar *gregorian = [[NSCalendar alloc]
+                           initWithCalendarIdentifier:NSGregorianCalendar];
+  NSDate *now = [NSDate date];
+  NSDateComponents *dateComps = [gregorian components: NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate: now];
   unsigned
   //Date
-  year = 0,
+  year,
   month_or_week = 1U,
   day = 1U,
   //Time
@@ -204,14 +202,14 @@ static BOOL is_leap_year(unsigned year) {
   const unsigned char *ch = (const unsigned char *)[str UTF8String];
   
   NSRange range = { 0U, 0U };
-  const unsigned char *start_of_date = NULL;
+  const unsigned char *start_of_date;
   if(strict && isspace(*ch)) {
     range.location = NSNotFound;
     isValidDate = NO;
   } else {
     //Skip leading whitespace.
     unsigned i = 0U;
-    unsigned len = (int)strlen((const char *)ch);
+    unsigned len = strlen((const char *)ch);
     for(; i < len; ++i) {
       if(!isspace(ch[i]))
         break;
@@ -228,9 +226,9 @@ static BOOL is_leap_year(unsigned year) {
       //There is no date here, only a time. Set the date to now; then we'll parse the time.
       isValidDate = isdigit(*++ch);
       
-      year = (int)[dateComps year];
-      month_or_week = (int)[dateComps month];
-      day = (int)[dateComps day];
+      year = [dateComps year];
+      month_or_week = [dateComps month];
+      day = [dateComps day];
     } else {
       while(*ch == '-') {
         ++num_leading_hyphens;
@@ -242,12 +240,12 @@ static BOOL is_leap_year(unsigned year) {
         case 0:
           if(*ch == 'W') {
             if((ch[1] == '-') && isdigit(ch[2]) && ((num_leading_hyphens == 1U) || ((num_leading_hyphens == 2U) && !strict))) {
-              year = (int)[dateComps year];
+              year = [dateComps year];
               month_or_week = 1U;
               ch += 2;
               goto parseDayAfterWeek;
             } else if(num_leading_hyphens == 1U) {
-              year = (int)[dateComps year];
+              year = [dateComps year];
               goto parseWeekAndDay;
             } else
               isValidDate = NO;
@@ -273,7 +271,7 @@ static BOOL is_leap_year(unsigned year) {
             day = segment % 100U;
             segment /= 100U;
             month_or_week = segment % 100U;
-            year  = (int)[dateComps year];
+            year  = [dateComps year];
             year -= (year % 100U);
             year += segment / 100U;
           }
@@ -337,7 +335,7 @@ static BOOL is_leap_year(unsigned year) {
             case 2: //MMDD
               day = segment % 100U;
               month_or_week = segment / 100U;
-              year = (int)[dateComps year];
+              year = [dateComps year];
               
               break;
               
@@ -352,7 +350,7 @@ static BOOL is_leap_year(unsigned year) {
             if(num_leading_hyphens == 1U) {
               if(*ch == '-') ++ch;
               if(*++ch == 'W') {
-                year  = (int)[dateComps year];
+                year  = [dateComps year];
                 year -= (year % 10U);
                 year += segment;
                 goto parseWeekAndDay;
@@ -367,7 +365,7 @@ static BOOL is_leap_year(unsigned year) {
             case 0:
               if(*ch == '-') {
                 //Implicit century
-                year  = (int)[dateComps year];
+                year  = [dateComps year];
                 year -= (year % 100U);
                 year += segment;
                 
@@ -408,7 +406,7 @@ static BOOL is_leap_year(unsigned year) {
                   }
                 }
               } else if(*ch == 'W') {
-                year  = (int)[dateComps year];
+                year  = [dateComps year];
                 year -= (year % 100U);
                 year += segment;
                 
@@ -436,7 +434,7 @@ static BOOL is_leap_year(unsigned year) {
               
             case 1:; //-YY; -YY-MM (implicit century)
               NSLog(@"(%@) found %u digits and one hyphen, so this is either -YY or -YY-MM; segment (year) is %u", str, num_digits, segment);
-              unsigned current_year = (int)[dateComps year];
+              unsigned current_year = [dateComps year];
               unsigned century = (current_year % 100U);
               year = segment + (current_year - century);
               if(num_digits == 1U) //implied decade
@@ -454,7 +452,7 @@ static BOOL is_leap_year(unsigned year) {
               break;
               
             case 2: //--MM; --MM-DD
-              year = (int)[dateComps year];
+              year = [dateComps year];
               month_or_week = segment;
               if(*ch == '-') {
                 ++ch;
@@ -465,8 +463,8 @@ static BOOL is_leap_year(unsigned year) {
               break;
               
             case 3: //---DD
-              year = (int)[dateComps year];
-              month_or_week = (int)[dateComps month];
+              year = [dateComps year];
+              month_or_week = [dateComps month];
               day = segment;
               break;
               
@@ -493,7 +491,7 @@ static BOOL is_leap_year(unsigned year) {
             isValidDate = NO;
           else {
             day = segment;
-            year = (int)[dateComps year];
+            year = [dateComps year];
             dateSpecification = dateOnly;
             if(strict && (day > (365U + is_leap_year(year))))
               isValidDate = NO;

@@ -38,14 +38,24 @@
 @class n_webservice_modify_rollsResponse;
 @class n_webservice_save_photo_to_file;
 @class n_webservice_save_photo_to_fileResponse;
-@class n_webservice_get_project_json;
-@class n_webservice_get_project_jsonResponse;
 @class n_webservice_get_users_by_menu;
 @class n_webservice_get_users_by_menuResponse;
 @class n_webservice_modify_project_json;
 @class n_webservice_modify_project_jsonResponse;
 @class n_webservice_uf_test;
 @class n_webservice_uf_testResponse;
+@class n_webservice_get_project_all_json;
+@class n_webservice_get_project_all_jsonResponse;
+@class n_webservice_get_menu_all_json;
+@class n_webservice_get_menu_all_jsonResponse;
+@class n_webservice_get_project_by_menu_json;
+@class n_webservice_get_project_by_menu_jsonResponse;
+@class n_webservice_get_project_json;
+@class n_webservice_get_project_jsonResponse;
+@class n_webservice_modify_users_head;
+@class n_webservice_modify_users_headResponse;
+@class n_webservice_modify_project_jd_json;
+@class n_webservice_modify_project_jd_jsonResponse;
 @interface n_webservice_uf_get_person_info : NSObject {
 	
 /* elements */
@@ -720,44 +730,6 @@
 /* attributes */
 - (NSDictionary *)attributes;
 @end
-@interface n_webservice_get_project_json : NSObject {
-	
-/* elements */
-	NSString * user_id;
-	NSString * flag;
-/* attributes */
-}
-- (NSString *)nsPrefix;
-- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
-- (void)addAttributesToNode:(xmlNodePtr)node;
-- (void)addElementsToNode:(xmlNodePtr)node;
-+ (n_webservice_get_project_json *)deserializeNode:(xmlNodePtr)cur;
-- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
-- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
-/* elements */
-@property (retain) NSString * user_id;
-@property (retain) NSString * flag;
-/* attributes */
-- (NSDictionary *)attributes;
-@end
-@interface n_webservice_get_project_jsonResponse : NSObject {
-	
-/* elements */
-	NSString * get_project_jsonResult;
-/* attributes */
-}
-- (NSString *)nsPrefix;
-- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
-- (void)addAttributesToNode:(xmlNodePtr)node;
-- (void)addElementsToNode:(xmlNodePtr)node;
-+ (n_webservice_get_project_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
-- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
-- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
-/* elements */
-@property (retain) NSString * get_project_jsonResult;
-/* attributes */
-- (NSDictionary *)attributes;
-@end
 @interface n_webservice_get_users_by_menu : NSObject {
 	
 /* elements */
@@ -866,6 +838,238 @@
 /* attributes */
 - (NSDictionary *)attributes;
 @end
+@interface n_webservice_get_project_all_json : NSObject {
+	
+/* elements */
+	NSString * user_id;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_all_json *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * user_id;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_project_all_jsonResponse : NSObject {
+	
+/* elements */
+	NSString * get_project_all_jsonResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_all_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * get_project_all_jsonResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_menu_all_json : NSObject {
+	
+/* elements */
+	NSString * uids;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_menu_all_json *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * uids;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_menu_all_jsonResponse : NSObject {
+	
+/* elements */
+	NSString * get_menu_all_jsonResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_menu_all_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * get_menu_all_jsonResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_project_by_menu_json : NSObject {
+	
+/* elements */
+	NSString * user_id;
+	NSString * menu_id;
+	NSString * rowstart;
+	NSString * rowend;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_by_menu_json *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * user_id;
+@property (retain) NSString * menu_id;
+@property (retain) NSString * rowstart;
+@property (retain) NSString * rowend;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_project_by_menu_jsonResponse : NSObject {
+	
+/* elements */
+	NSString * get_project_by_menu_jsonResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_by_menu_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * get_project_by_menu_jsonResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_project_json : NSObject {
+	
+/* elements */
+	NSString * user_id;
+	NSString * menu_id;
+	NSString * rowstart;
+	NSString * rowend;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_json *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * user_id;
+@property (retain) NSString * menu_id;
+@property (retain) NSString * rowstart;
+@property (retain) NSString * rowend;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_get_project_jsonResponse : NSObject {
+	
+/* elements */
+	NSString * get_project_jsonResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_get_project_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * get_project_jsonResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_modify_users_head : NSObject {
+	
+/* elements */
+	NSString * id_;
+	NSString * url;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_modify_users_head *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * id_;
+@property (retain) NSString * url;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_modify_users_headResponse : NSObject {
+	
+/* elements */
+	NSString * modify_users_headResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_modify_users_headResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * modify_users_headResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_modify_project_jd_json : NSObject {
+	
+/* elements */
+	NSString * action;
+	NSString * gson;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_modify_project_jd_json *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * action;
+@property (retain) NSString * gson;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface n_webservice_modify_project_jd_jsonResponse : NSObject {
+	
+/* elements */
+	NSString * modify_project_jd_jsonResult;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (n_webservice_modify_project_jd_jsonResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * modify_project_jd_jsonResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
 /* Cookies handling provided by http://en.wikibooks.org/wiki/Programming:WebObjects/Web_Services/Web_Service_Provider */
 #import <libxml/parser.h>
 #import "xsd.h"
@@ -937,14 +1141,24 @@
 - (void)modify_rollsAsyncUsingParameters:(n_webservice_modify_rolls *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoapBindingResponse *)save_photo_to_fileUsingParameters:(n_webservice_save_photo_to_file *)aParameters ;
 - (void)save_photo_to_fileAsyncUsingParameters:(n_webservice_save_photo_to_file *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
-- (n_webserviceSoapBindingResponse *)get_project_jsonUsingParameters:(n_webservice_get_project_json *)aParameters ;
-- (void)get_project_jsonAsyncUsingParameters:(n_webservice_get_project_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoapBindingResponse *)get_users_by_menuUsingParameters:(n_webservice_get_users_by_menu *)aParameters ;
 - (void)get_users_by_menuAsyncUsingParameters:(n_webservice_get_users_by_menu *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoapBindingResponse *)modify_project_jsonUsingParameters:(n_webservice_modify_project_json *)aParameters ;
 - (void)modify_project_jsonAsyncUsingParameters:(n_webservice_modify_project_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoapBindingResponse *)uf_testUsingParameters:(n_webservice_uf_test *)aParameters ;
 - (void)uf_testAsyncUsingParameters:(n_webservice_uf_test *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)get_project_all_jsonUsingParameters:(n_webservice_get_project_all_json *)aParameters ;
+- (void)get_project_all_jsonAsyncUsingParameters:(n_webservice_get_project_all_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)get_menu_all_jsonUsingParameters:(n_webservice_get_menu_all_json *)aParameters ;
+- (void)get_menu_all_jsonAsyncUsingParameters:(n_webservice_get_menu_all_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)get_project_by_menu_jsonUsingParameters:(n_webservice_get_project_by_menu_json *)aParameters ;
+- (void)get_project_by_menu_jsonAsyncUsingParameters:(n_webservice_get_project_by_menu_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)get_project_jsonUsingParameters:(n_webservice_get_project_json *)aParameters ;
+- (void)get_project_jsonAsyncUsingParameters:(n_webservice_get_project_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)modify_users_headUsingParameters:(n_webservice_modify_users_head *)aParameters ;
+- (void)modify_users_headAsyncUsingParameters:(n_webservice_modify_users_head *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoapBindingResponse *)modify_project_jd_jsonUsingParameters:(n_webservice_modify_project_jd_json *)aParameters ;
+- (void)modify_project_jd_jsonAsyncUsingParameters:(n_webservice_modify_project_jd_json *)aParameters  delegate:(id<n_webserviceSoapBindingResponseDelegate>)responseDelegate;
 @end
 @interface n_webserviceSoapBindingOperation : NSOperation {
 	n_webserviceSoapBinding *binding;
@@ -1104,14 +1318,6 @@
 	parameters:(n_webservice_save_photo_to_file *)aParameters
 ;
 @end
-@interface n_webserviceSoapBinding_get_project_json : n_webserviceSoapBindingOperation {
-	n_webservice_get_project_json * parameters;
-}
-@property (retain) n_webservice_get_project_json * parameters;
-- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
-	parameters:(n_webservice_get_project_json *)aParameters
-;
-@end
 @interface n_webserviceSoapBinding_get_users_by_menu : n_webserviceSoapBindingOperation {
 	n_webservice_get_users_by_menu * parameters;
 }
@@ -1134,6 +1340,54 @@
 @property (retain) n_webservice_uf_test * parameters;
 - (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
 	parameters:(n_webservice_uf_test *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_get_project_all_json : n_webserviceSoapBindingOperation {
+	n_webservice_get_project_all_json * parameters;
+}
+@property (retain) n_webservice_get_project_all_json * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_all_json *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_get_menu_all_json : n_webserviceSoapBindingOperation {
+	n_webservice_get_menu_all_json * parameters;
+}
+@property (retain) n_webservice_get_menu_all_json * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_menu_all_json *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_get_project_by_menu_json : n_webserviceSoapBindingOperation {
+	n_webservice_get_project_by_menu_json * parameters;
+}
+@property (retain) n_webservice_get_project_by_menu_json * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_by_menu_json *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_get_project_json : n_webserviceSoapBindingOperation {
+	n_webservice_get_project_json * parameters;
+}
+@property (retain) n_webservice_get_project_json * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_json *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_modify_users_head : n_webserviceSoapBindingOperation {
+	n_webservice_modify_users_head * parameters;
+}
+@property (retain) n_webservice_modify_users_head * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_modify_users_head *)aParameters
+;
+@end
+@interface n_webserviceSoapBinding_modify_project_jd_json : n_webserviceSoapBindingOperation {
+	n_webservice_modify_project_jd_json * parameters;
+}
+@property (retain) n_webservice_modify_project_jd_json * parameters;
+- (id)initWithBinding:(n_webserviceSoapBinding *)aBinding delegate:(id<n_webserviceSoapBindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_modify_project_jd_json *)aParameters
 ;
 @end
 @interface n_webserviceSoapBinding_envelope : NSObject {
@@ -1209,14 +1463,24 @@
 - (void)modify_rollsAsyncUsingParameters:(n_webservice_modify_rolls *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoap12BindingResponse *)save_photo_to_fileUsingParameters:(n_webservice_save_photo_to_file *)aParameters ;
 - (void)save_photo_to_fileAsyncUsingParameters:(n_webservice_save_photo_to_file *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
-- (n_webserviceSoap12BindingResponse *)get_project_jsonUsingParameters:(n_webservice_get_project_json *)aParameters ;
-- (void)get_project_jsonAsyncUsingParameters:(n_webservice_get_project_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoap12BindingResponse *)get_users_by_menuUsingParameters:(n_webservice_get_users_by_menu *)aParameters ;
 - (void)get_users_by_menuAsyncUsingParameters:(n_webservice_get_users_by_menu *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoap12BindingResponse *)modify_project_jsonUsingParameters:(n_webservice_modify_project_json *)aParameters ;
 - (void)modify_project_jsonAsyncUsingParameters:(n_webservice_modify_project_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
 - (n_webserviceSoap12BindingResponse *)uf_testUsingParameters:(n_webservice_uf_test *)aParameters ;
 - (void)uf_testAsyncUsingParameters:(n_webservice_uf_test *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)get_project_all_jsonUsingParameters:(n_webservice_get_project_all_json *)aParameters ;
+- (void)get_project_all_jsonAsyncUsingParameters:(n_webservice_get_project_all_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)get_menu_all_jsonUsingParameters:(n_webservice_get_menu_all_json *)aParameters ;
+- (void)get_menu_all_jsonAsyncUsingParameters:(n_webservice_get_menu_all_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)get_project_by_menu_jsonUsingParameters:(n_webservice_get_project_by_menu_json *)aParameters ;
+- (void)get_project_by_menu_jsonAsyncUsingParameters:(n_webservice_get_project_by_menu_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)get_project_jsonUsingParameters:(n_webservice_get_project_json *)aParameters ;
+- (void)get_project_jsonAsyncUsingParameters:(n_webservice_get_project_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)modify_users_headUsingParameters:(n_webservice_modify_users_head *)aParameters ;
+- (void)modify_users_headAsyncUsingParameters:(n_webservice_modify_users_head *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
+- (n_webserviceSoap12BindingResponse *)modify_project_jd_jsonUsingParameters:(n_webservice_modify_project_jd_json *)aParameters ;
+- (void)modify_project_jd_jsonAsyncUsingParameters:(n_webservice_modify_project_jd_json *)aParameters  delegate:(id<n_webserviceSoap12BindingResponseDelegate>)responseDelegate;
 @end
 @interface n_webserviceSoap12BindingOperation : NSOperation {
 	n_webserviceSoap12Binding *binding;
@@ -1376,14 +1640,6 @@
 	parameters:(n_webservice_save_photo_to_file *)aParameters
 ;
 @end
-@interface n_webserviceSoap12Binding_get_project_json : n_webserviceSoap12BindingOperation {
-	n_webservice_get_project_json * parameters;
-}
-@property (retain) n_webservice_get_project_json * parameters;
-- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
-	parameters:(n_webservice_get_project_json *)aParameters
-;
-@end
 @interface n_webserviceSoap12Binding_get_users_by_menu : n_webserviceSoap12BindingOperation {
 	n_webservice_get_users_by_menu * parameters;
 }
@@ -1406,6 +1662,54 @@
 @property (retain) n_webservice_uf_test * parameters;
 - (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
 	parameters:(n_webservice_uf_test *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_get_project_all_json : n_webserviceSoap12BindingOperation {
+	n_webservice_get_project_all_json * parameters;
+}
+@property (retain) n_webservice_get_project_all_json * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_all_json *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_get_menu_all_json : n_webserviceSoap12BindingOperation {
+	n_webservice_get_menu_all_json * parameters;
+}
+@property (retain) n_webservice_get_menu_all_json * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_menu_all_json *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_get_project_by_menu_json : n_webserviceSoap12BindingOperation {
+	n_webservice_get_project_by_menu_json * parameters;
+}
+@property (retain) n_webservice_get_project_by_menu_json * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_by_menu_json *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_get_project_json : n_webserviceSoap12BindingOperation {
+	n_webservice_get_project_json * parameters;
+}
+@property (retain) n_webservice_get_project_json * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_get_project_json *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_modify_users_head : n_webserviceSoap12BindingOperation {
+	n_webservice_modify_users_head * parameters;
+}
+@property (retain) n_webservice_modify_users_head * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_modify_users_head *)aParameters
+;
+@end
+@interface n_webserviceSoap12Binding_modify_project_jd_json : n_webserviceSoap12BindingOperation {
+	n_webservice_modify_project_jd_json * parameters;
+}
+@property (retain) n_webservice_modify_project_jd_json * parameters;
+- (id)initWithBinding:(n_webserviceSoap12Binding *)aBinding delegate:(id<n_webserviceSoap12BindingResponseDelegate>)aDelegate
+	parameters:(n_webservice_modify_project_jd_json *)aParameters
 ;
 @end
 @interface n_webserviceSoap12Binding_envelope : NSObject {

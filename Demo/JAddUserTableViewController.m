@@ -12,11 +12,15 @@
 
 @interface JAddUserTableViewController () <UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UITextField *sfzhText;
 @property (weak, nonatomic) IBOutlet UITextField *departText;
-@property (weak, nonatomic) IBOutlet UIPickerView *departSelect;
-@property (strong, nonatomic) IBOutlet UIToolbar *toobBar;
+@property (weak, nonatomic) IBOutlet UITextField *rollText;
+@property (weak, nonatomic) IBOutlet UITextField *phoneText;
+@property (weak, nonatomic) IBOutlet UIToolbar *toobBar;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *prevButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 
 @end
 
@@ -34,17 +38,17 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    _nameText.inputView = _datePicker;
-    _nameText.inputAccessoryView = _toobBar;
-    
-//    _departText.inputView = _departSelect;
-//    _departText.inputAccessoryView = _toobBar;
+    _nameText.delegate = self;
+    _sfzhText.delegate = self;
     _departText.delegate = self;
-    _departSelect.delegate = self;
-    _departSelect.dataSource = self;
-//    JGetDepart *getDepart = [[JGetDepart alloc] init];
-//    resultArr = [getDepart getDepart];
+    _rollText.delegate = self;
+    _phoneText.delegate = self;
     
+    _nameText.tag = 1001;
+    _sfzhText.tag = 1002;
+    _phoneText.tag = 1003;
+    _departText.tag = 1004;
+    _rollText.tag = 1005;
 }
 
 - (void)act {
@@ -52,13 +56,151 @@
 }
 
 - (IBAction)done:(id)sender {
-    [_nameText endEditing:YES];
-    [_departText endEditing:YES];
+    NSInteger i = [sender tag];
+    if (i == 1001) {
+        [_nameText resignFirstResponder];
+    }
+    if (i == 1002) {
+        [_sfzhText resignFirstResponder];
+    }
+    if (i == 1003) {
+        [_phoneText resignFirstResponder];
+    }
+    if (i == 1004) {
+        [_departText endEditing:YES];
+    }
+    if (i == 1005) {
+        [_rollText endEditing:YES];
+    }
+}
+
+- (IBAction)prev :(id)sender {
+    NSInteger i = [sender tag];
+    if (i == 1002) {
+        [_sfzhText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i-1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1003) {
+        [_phoneText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i-1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1004) {
+        [_departText endEditing:YES];
+        UITextField *text = [self.tableView viewWithTag:i-1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1005) {
+        [_rollText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i-1];
+        [text becomeFirstResponder];
+    }
+}
+
+- (IBAction)next :(id)sender {
+    NSInteger i = [sender tag];
+    if (i == 1001) {
+        [_nameText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i+1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1002) {
+        [_sfzhText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i+1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1003) {
+        [_phoneText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i+1];
+        [text becomeFirstResponder];
+    }
+    if (i == 1004) {
+        [_departText resignFirstResponder];
+        UITextField *text = [self.tableView viewWithTag:i+1];
+        [text becomeFirstResponder];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSInteger i = textField.tag;
+    if (i == 1001) {
+        _nameText.inputAccessoryView = _toobBar;
+        UIBarButtonItem *item0 = [[_toobBar items] objectAtIndex:0];
+        item0.enabled = NO;
+        item0.tag = 1001;
+        UIBarButtonItem *item2 = [[_toobBar items] objectAtIndex:2];
+        item2.enabled = YES;
+        item2.tag = 1001;
+        UIBarButtonItem *item4 = [[_toobBar items] objectAtIndex:4];
+        item4.tag = 1001;
+    }
+    if (i == 1002) {
+        _sfzhText.inputAccessoryView = _toobBar;
+        UIBarButtonItem *item0 = [[_toobBar items] objectAtIndex:0];
+        item0.enabled = YES;
+        item0.tag = 1002;
+        UIBarButtonItem *item2 = [[_toobBar items] objectAtIndex:2];
+        item2.enabled = YES;
+        item2.tag = 1002;
+        UIBarButtonItem *item4 = [[_toobBar items] objectAtIndex:4];
+        item4.tag = 1002;
+    }
+    if (i == 1003) {
+        _phoneText.inputAccessoryView = _toobBar;
+        UIBarButtonItem *item0 = [[_toobBar items] objectAtIndex:0];
+        item0.enabled = YES;
+        item0.tag = 1003;
+        UIBarButtonItem *item2 = [[_toobBar items] objectAtIndex:2];
+        item2.enabled = YES;
+        item2.tag = 1003;
+        UIBarButtonItem *item4 = [[_toobBar items] objectAtIndex:4];
+        item4.tag = 1003;
+    }
+    if (i == 1004) {
+        JGetDepart *getDepart = [[JGetDepart alloc] init];
+        resultArr = [getDepart getDepart];
+        _departText.inputView = _pickerView;
+        _departText.delegate = self;
+        _pickerView.delegate = self;
+        _pickerView.dataSource = self;
+        _departText.inputAccessoryView = _toobBar;
+        UIBarButtonItem *item0 = [[_toobBar items] objectAtIndex:0];
+        item0.enabled = YES;
+        item0.tag = 1004;
+        UIBarButtonItem *item2 = [[_toobBar items] objectAtIndex:2];
+        item2.enabled = YES;
+        item2.tag = 1004;
+        UIBarButtonItem *item4 = [[_toobBar items] objectAtIndex:4];
+        item4.tag = 1004;
+    }
+    if (i == 1005) {
+        _rollText.inputAccessoryView = _toobBar;
+        UIBarButtonItem *item0 = [[_toobBar items] objectAtIndex:0];
+        item0.enabled = YES;
+        item0.tag = 1005;
+        UIBarButtonItem *item2 = [[_toobBar items] objectAtIndex:2];
+        item2.enabled = NO;
+        item2.tag = 1005;
+        UIBarButtonItem *item4 = [[_toobBar items] objectAtIndex:4];
+        item4.tag = 1005;
+    }
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.tag == 1004) {
+        NSInteger row = [_pickerView selectedRowInComponent:0];
+        Depart *depart = [resultArr objectAtIndex:row];
+        _departText.text = depart.pname;
+    }
 }
 
 #pragma mark - PickView delegate
@@ -74,27 +216,6 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     Depart *depart = [resultArr objectAtIndex:row];
     return depart.pname;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField.placeholder isEqualToString:@"姓名"]) {
-        //_nameText.text = _datePicker.
-    }
-    else if ([textField.placeholder isEqualToString:@"部门"]) {
-        NSInteger row = [_departSelect selectedRowInComponent:0];
-        Depart *depart = [resultArr objectAtIndex:row];
-        _departText.text = depart.pname;
-    }
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if ([textField.placeholder isEqualToString:@"部门"]) {
-        _departText.inputView = _departSelect;
-        _departText.inputAccessoryView = _toobBar;
-        JGetDepart *getDepart = [[JGetDepart alloc] init];
-        resultArr = [getDepart getDepart];
-    }
-    
 }
 
 

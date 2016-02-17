@@ -21,7 +21,9 @@
     _loaction.delegate = self;
     [_loaction startUserLocationService];
     
-    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-69)];
+    _mapView.mapType = BMKMapTypeSatellite;
+    
     [self.view addSubview: _mapView];
 //    self.view = _mapView;
     _mapView.showsUserLocation = NO;//先关闭显示的定位图层

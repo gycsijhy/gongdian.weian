@@ -7,25 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591299941C701EFF00D3EA2F /* JSCJHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 591299921C701EFF00D3EA2F /* JSCJHTableViewCell.m */; };
+		591299951C701EFF00D3EA2F /* JSCJHTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 591299931C701EFF00D3EA2F /* JSCJHTableViewCell.xib */; };
 		591AF9E41C5EFC9700F56A8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 591AF9E31C5EFC9700F56A8F /* LaunchScreen.storyboard */; };
 		591AF9EA1C5F41A300F56A8F /* JAddSCJHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 591AF9E91C5F41A300F56A8F /* JAddSCJHTableViewController.m */; };
 		592299331C5703A900970D50 /* JWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 592299321C5703A900970D50 /* JWorkViewController.m */; };
 		592299371C5716EE00970D50 /* JDepartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 592299351C5716EE00970D50 /* JDepartViewController.m */; };
 		5922993B1C5719F300970D50 /* Depart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5922993A1C5719F300970D50 /* Depart.m */; };
-		597061211C537A8000F246EC /* n_webservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 597061161C537A8000F246EC /* n_webservice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		597061221C537A8000F246EC /* NSDate+ISO8601Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 597061181C537A8000F246EC /* NSDate+ISO8601Parsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		597061231C537A8000F246EC /* NSDate+ISO8601Unparsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970611A1C537A8000F246EC /* NSDate+ISO8601Unparsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		597061241C537A8000F246EC /* USAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970611C1C537A8000F246EC /* USAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		597061251C537A8000F246EC /* USGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970611E1C537A8000F246EC /* USGlobals.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		597061261C537A8000F246EC /* xsd.m in Sources */ = {isa = PBXBuildFile; fileRef = 597061201C537A8000F246EC /* xsd.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5947ABA71C702F4200C2CEB9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 5947ABA61C702F4200C2CEB9 /* Plan.m */; };
+		596347401C6373B300B02507 /* JPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5963473F1C6373B300B02507 /* JPlanViewController.m */; };
 		597061281C537B4600F246EC /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 597061271C537B4600F246EC /* libxml2.tbd */; };
 		597061321C537F1800F246EC /* JGetMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 597061311C537F1800F246EC /* JGetMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5970613A1C538CC300F246EC /* Work.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 597061391C538CC300F246EC /* Work.storyboard */; };
 		5970613D1C53925F00F246EC /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970613C1C53925F00F246EC /* Menu.m */; };
 		597061451C5488D800F246EC /* MeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597061441C5488D800F246EC /* MeTableViewController.m */; };
+		59738FA11C72AD58006C4305 /* n_webservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738F961C72AD58006C4305 /* n_webservice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FA21C72AD58006C4305 /* NSDate+ISO8601Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738F981C72AD58006C4305 /* NSDate+ISO8601Parsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FA31C72AD58006C4305 /* NSDate+ISO8601Unparsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738F9A1C72AD58006C4305 /* NSDate+ISO8601Unparsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FA41C72AD58006C4305 /* USAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738F9C1C72AD58006C4305 /* USAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FA51C72AD58006C4305 /* USGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738F9E1C72AD58006C4305 /* USGlobals.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FA61C72AD58006C4305 /* xsd.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738FA01C72AD58006C4305 /* xsd.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		59738FAF1C72D07B006C4305 /* JUploadImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738FAE1C72D07B006C4305 /* JUploadImageHelper.m */; };
+		59738FB21C72FFD4006C4305 /* JUrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738FB11C72FFD4006C4305 /* JUrlHelper.m */; };
+		59738FB51C7307E4006C4305 /* JModifyUserHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 59738FB41C7307E4006C4305 /* JModifyUserHeader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		598123541C5BA447005A87C6 /* JShowPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598123531C5BA447005A87C6 /* JShowPhotoViewController.m */; };
 		59A6706B1C574AC100CDD403 /* JUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A670691C574AC100CDD403 /* JUserViewController.m */; };
-		59A6706F1C574C2F00CDD403 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A6706E1C574C2F00CDD403 /* User.m */; };
 		59A670781C575E5A00CDD403 /* JDepartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A670771C575E5A00CDD403 /* JDepartHelper.m */; };
 		59A6707C1C57640100CDD403 /* JUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A6707A1C57640100CDD403 /* JUserTableViewCell.m */; };
 		59A6707D1C57640100CDD403 /* JUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A6707B1C57640100CDD403 /* JUserTableViewCell.xib */; };
@@ -64,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		58F272DAE86D96C8F62B7756 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		591299911C701EFF00D3EA2F /* JSCJHTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCJHTableViewCell.h; sourceTree = "<group>"; };
+		591299921C701EFF00D3EA2F /* JSCJHTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCJHTableViewCell.m; sourceTree = "<group>"; };
+		591299931C701EFF00D3EA2F /* JSCJHTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSCJHTableViewCell.xib; sourceTree = "<group>"; };
 		591AF9E31C5EFC9700F56A8F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		591AF9E81C5F41A300F56A8F /* JAddSCJHTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAddSCJHTableViewController.h; sourceTree = "<group>"; };
 		591AF9E91C5F41A300F56A8F /* JAddSCJHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAddSCJHTableViewController.m; sourceTree = "<group>"; };
@@ -73,18 +82,10 @@
 		592299351C5716EE00970D50 /* JDepartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDepartViewController.m; sourceTree = "<group>"; };
 		592299391C5719F300970D50 /* Depart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Depart.h; sourceTree = "<group>"; };
 		5922993A1C5719F300970D50 /* Depart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Depart.m; sourceTree = "<group>"; };
-		597061151C537A8000F246EC /* n_webservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = n_webservice.h; sourceTree = "<group>"; };
-		597061161C537A8000F246EC /* n_webservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = n_webservice.m; sourceTree = "<group>"; };
-		597061171C537A8000F246EC /* NSDate+ISO8601Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Parsing.h"; sourceTree = "<group>"; };
-		597061181C537A8000F246EC /* NSDate+ISO8601Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Parsing.m"; sourceTree = "<group>"; };
-		597061191C537A8000F246EC /* NSDate+ISO8601Unparsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Unparsing.h"; sourceTree = "<group>"; };
-		5970611A1C537A8000F246EC /* NSDate+ISO8601Unparsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Unparsing.m"; sourceTree = "<group>"; };
-		5970611B1C537A8000F246EC /* USAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAdditions.h; sourceTree = "<group>"; };
-		5970611C1C537A8000F246EC /* USAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAdditions.m; sourceTree = "<group>"; };
-		5970611D1C537A8000F246EC /* USGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USGlobals.h; sourceTree = "<group>"; };
-		5970611E1C537A8000F246EC /* USGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USGlobals.m; sourceTree = "<group>"; };
-		5970611F1C537A8000F246EC /* xsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd.h; sourceTree = "<group>"; };
-		597061201C537A8000F246EC /* xsd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xsd.m; sourceTree = "<group>"; };
+		5947ABA51C702F4200C2CEB9 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		5947ABA61C702F4200C2CEB9 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		5963473E1C6373B300B02507 /* JPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPlanViewController.h; sourceTree = "<group>"; };
+		5963473F1C6373B300B02507 /* JPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPlanViewController.m; sourceTree = "<group>"; };
 		597061271C537B4600F246EC /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		597061301C537F1800F246EC /* JGetMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGetMenu.h; sourceTree = "<group>"; };
 		597061311C537F1800F246EC /* JGetMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGetMenu.m; sourceTree = "<group>"; };
@@ -93,12 +94,28 @@
 		5970613C1C53925F00F246EC /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		597061431C5488D800F246EC /* MeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTableViewController.h; sourceTree = "<group>"; };
 		597061441C5488D800F246EC /* MeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeTableViewController.m; sourceTree = "<group>"; };
+		59738F951C72AD58006C4305 /* n_webservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = n_webservice.h; sourceTree = "<group>"; };
+		59738F961C72AD58006C4305 /* n_webservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = n_webservice.m; sourceTree = "<group>"; };
+		59738F971C72AD58006C4305 /* NSDate+ISO8601Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Parsing.h"; sourceTree = "<group>"; };
+		59738F981C72AD58006C4305 /* NSDate+ISO8601Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Parsing.m"; sourceTree = "<group>"; };
+		59738F991C72AD58006C4305 /* NSDate+ISO8601Unparsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Unparsing.h"; sourceTree = "<group>"; };
+		59738F9A1C72AD58006C4305 /* NSDate+ISO8601Unparsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Unparsing.m"; sourceTree = "<group>"; };
+		59738F9B1C72AD58006C4305 /* USAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAdditions.h; sourceTree = "<group>"; };
+		59738F9C1C72AD58006C4305 /* USAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAdditions.m; sourceTree = "<group>"; };
+		59738F9D1C72AD58006C4305 /* USGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USGlobals.h; sourceTree = "<group>"; };
+		59738F9E1C72AD58006C4305 /* USGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USGlobals.m; sourceTree = "<group>"; };
+		59738F9F1C72AD58006C4305 /* xsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd.h; sourceTree = "<group>"; };
+		59738FA01C72AD58006C4305 /* xsd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xsd.m; sourceTree = "<group>"; };
+		59738FAD1C72D07B006C4305 /* JUploadImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUploadImageHelper.h; sourceTree = "<group>"; };
+		59738FAE1C72D07B006C4305 /* JUploadImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUploadImageHelper.m; sourceTree = "<group>"; };
+		59738FB01C72FFD4006C4305 /* JUrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUrlHelper.h; sourceTree = "<group>"; };
+		59738FB11C72FFD4006C4305 /* JUrlHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUrlHelper.m; sourceTree = "<group>"; };
+		59738FB31C7307E4006C4305 /* JModifyUserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JModifyUserHeader.h; sourceTree = "<group>"; };
+		59738FB41C7307E4006C4305 /* JModifyUserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JModifyUserHeader.m; sourceTree = "<group>"; };
 		598123521C5BA447005A87C6 /* JShowPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JShowPhotoViewController.h; sourceTree = "<group>"; };
 		598123531C5BA447005A87C6 /* JShowPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JShowPhotoViewController.m; sourceTree = "<group>"; };
 		59A670681C574AC100CDD403 /* JUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUserViewController.h; sourceTree = "<group>"; };
 		59A670691C574AC100CDD403 /* JUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUserViewController.m; sourceTree = "<group>"; };
-		59A6706D1C574C2F00CDD403 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		59A6706E1C574C2F00CDD403 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		59A670761C575E5A00CDD403 /* JDepartHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDepartHelper.h; sourceTree = "<group>"; };
 		59A670771C575E5A00CDD403 /* JDepartHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDepartHelper.m; sourceTree = "<group>"; };
 		59A670791C57640100CDD403 /* JUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUserTableViewCell.h; sourceTree = "<group>"; };
@@ -224,10 +241,10 @@
 				5970613C1C53925F00F246EC /* Menu.m */,
 				592299391C5719F300970D50 /* Depart.h */,
 				5922993A1C5719F300970D50 /* Depart.m */,
-				59A6706D1C574C2F00CDD403 /* User.h */,
-				59A6706E1C574C2F00CDD403 /* User.m */,
 				59A670961C58589900CDD403 /* Users.h */,
 				59A670971C58589900CDD403 /* Users.m */,
+				5947ABA51C702F4200C2CEB9 /* Plan.h */,
+				5947ABA61C702F4200C2CEB9 /* Plan.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,6 +259,10 @@
 				59A670941C5854A800CDD403 /* JLoginHelper.m */,
 				59A670C11C5B462D00CDD403 /* JImagePickerHelper.h */,
 				59A670C21C5B462D00CDD403 /* JImagePickerHelper.m */,
+				59738FAD1C72D07B006C4305 /* JUploadImageHelper.h */,
+				59738FAE1C72D07B006C4305 /* JUploadImageHelper.m */,
+				59738FB01C72FFD4006C4305 /* JUrlHelper.h */,
+				59738FB11C72FFD4006C4305 /* JUrlHelper.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -258,18 +279,18 @@
 		597061001C5372A300F246EC /* WDSL2OBJC */ = {
 			isa = PBXGroup;
 			children = (
-				597061151C537A8000F246EC /* n_webservice.h */,
-				597061161C537A8000F246EC /* n_webservice.m */,
-				597061171C537A8000F246EC /* NSDate+ISO8601Parsing.h */,
-				597061181C537A8000F246EC /* NSDate+ISO8601Parsing.m */,
-				597061191C537A8000F246EC /* NSDate+ISO8601Unparsing.h */,
-				5970611A1C537A8000F246EC /* NSDate+ISO8601Unparsing.m */,
-				5970611B1C537A8000F246EC /* USAdditions.h */,
-				5970611C1C537A8000F246EC /* USAdditions.m */,
-				5970611D1C537A8000F246EC /* USGlobals.h */,
-				5970611E1C537A8000F246EC /* USGlobals.m */,
-				5970611F1C537A8000F246EC /* xsd.h */,
-				597061201C537A8000F246EC /* xsd.m */,
+				59738F951C72AD58006C4305 /* n_webservice.h */,
+				59738F961C72AD58006C4305 /* n_webservice.m */,
+				59738F971C72AD58006C4305 /* NSDate+ISO8601Parsing.h */,
+				59738F981C72AD58006C4305 /* NSDate+ISO8601Parsing.m */,
+				59738F991C72AD58006C4305 /* NSDate+ISO8601Unparsing.h */,
+				59738F9A1C72AD58006C4305 /* NSDate+ISO8601Unparsing.m */,
+				59738F9B1C72AD58006C4305 /* USAdditions.h */,
+				59738F9C1C72AD58006C4305 /* USAdditions.m */,
+				59738F9D1C72AD58006C4305 /* USGlobals.h */,
+				59738F9E1C72AD58006C4305 /* USGlobals.m */,
+				59738F9F1C72AD58006C4305 /* xsd.h */,
+				59738FA01C72AD58006C4305 /* xsd.m */,
 			);
 			name = WDSL2OBJC;
 			sourceTree = "<group>";
@@ -278,6 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				597061391C538CC300F246EC /* Work.storyboard */,
+				5963473E1C6373B300B02507 /* JPlanViewController.h */,
+				5963473F1C6373B300B02507 /* JPlanViewController.m */,
 				59A670BB1C5A490700CDD403 /* JAddUserTableViewController.h */,
 				59A670BC1C5A490700CDD403 /* JAddUserTableViewController.m */,
 				592299311C5703A900970D50 /* JWorkViewController.h */,
@@ -297,6 +320,9 @@
 				598123531C5BA447005A87C6 /* JShowPhotoViewController.m */,
 				591AF9E81C5F41A300F56A8F /* JAddSCJHTableViewController.h */,
 				591AF9E91C5F41A300F56A8F /* JAddSCJHTableViewController.m */,
+				591299911C701EFF00D3EA2F /* JSCJHTableViewCell.h */,
+				591299921C701EFF00D3EA2F /* JSCJHTableViewCell.m */,
+				591299931C701EFF00D3EA2F /* JSCJHTableViewCell.xib */,
 			);
 			name = Work;
 			sourceTree = "<group>";
@@ -330,6 +356,8 @@
 				59A6708B1C579E6B00CDD403 /* JModifyRoll.m */,
 				59A6708D1C579E8A00CDD403 /* JModifyUser.h */,
 				59A6708E1C579E8A00CDD403 /* JModifyUser.m */,
+				59738FB31C7307E4006C4305 /* JModifyUserHeader.h */,
+				59738FB41C7307E4006C4305 /* JModifyUserHeader.m */,
 			);
 			name = NetWorking;
 			sourceTree = "<group>";
@@ -516,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A670A41C58B6C600CDD403 /* Home.storyboard in Resources */,
+				591299951C701EFF00D3EA2F /* JSCJHTableViewCell.xib in Resources */,
 				591AF9E41C5EFC9700F56A8F /* LaunchScreen.storyboard in Resources */,
 				59A670AD1C5A053300CDD403 /* Map.storyboard in Resources */,
 				59B0EC301C507F2C00455F8B /* Me.storyboard in Resources */,
@@ -582,18 +611,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A670B01C5A057800CDD403 /* JMapViewController.m in Sources */,
+				59738FAF1C72D07B006C4305 /* JUploadImageHelper.m in Sources */,
 				59A670981C58589900CDD403 /* Users.m in Sources */,
 				59A6706B1C574AC100CDD403 /* JUserViewController.m in Sources */,
 				59B4D7191C56603800BB0D58 /* JCheckSFZH.m in Sources */,
-				597061261C537A8000F246EC /* xsd.m in Sources */,
 				59B4D7131C565D7100BB0D58 /* JCheckIMEI.m in Sources */,
+				5947ABA71C702F4200C2CEB9 /* Plan.m in Sources */,
+				59738FA21C72AD58006C4305 /* NSDate+ISO8601Parsing.m in Sources */,
+				59738FA61C72AD58006C4305 /* xsd.m in Sources */,
+				59738FA41C72AD58006C4305 /* USAdditions.m in Sources */,
 				59A6708F1C579E8A00CDD403 /* JModifyUser.m in Sources */,
 				59A670A71C58B7A600CDD403 /* JHomeViewController.m in Sources */,
 				59B0EC251C4F767400455F8B /* BaseTabBarController.m in Sources */,
 				59B4D7221C56609900BB0D58 /* JGetUser.m in Sources */,
-				597061251C537A8000F246EC /* USGlobals.m in Sources */,
-				59A6706F1C574C2F00CDD403 /* User.m in Sources */,
+				596347401C6373B300B02507 /* JPlanViewController.m in Sources */,
 				59A670B61C5A3C9100CDD403 /* JUserInfoTableViewController.m in Sources */,
+				59738FA11C72AD58006C4305 /* n_webservice.m in Sources */,
 				5922993B1C5719F300970D50 /* Depart.m in Sources */,
 				597061451C5488D800F246EC /* MeTableViewController.m in Sources */,
 				59B0EC0A1C4F717C00455F8B /* AppDelegate.mm in Sources */,
@@ -601,21 +634,23 @@
 				59A670861C579D9000CDD403 /* JModifyDepart.m in Sources */,
 				59B0EC071C4F717C00455F8B /* main.m in Sources */,
 				5970613D1C53925F00F246EC /* Menu.m in Sources */,
+				59738FB51C7307E4006C4305 /* JModifyUserHeader.m in Sources */,
 				59A670891C579E3F00CDD403 /* JModifyProject.m in Sources */,
 				59A670781C575E5A00CDD403 /* JDepartHelper.m in Sources */,
 				59A670951C5854A800CDD403 /* JLoginHelper.m in Sources */,
+				59738FB21C72FFD4006C4305 /* JUrlHelper.m in Sources */,
 				598123541C5BA447005A87C6 /* JShowPhotoViewController.m in Sources */,
-				597061211C537A8000F246EC /* n_webservice.m in Sources */,
 				59A6708C1C579E6B00CDD403 /* JModifyRoll.m in Sources */,
-				597061221C537A8000F246EC /* NSDate+ISO8601Parsing.m in Sources */,
 				592299371C5716EE00970D50 /* JDepartViewController.m in Sources */,
 				59B4D7161C56602000BB0D58 /* JSendSMS.m in Sources */,
+				59738FA31C72AD58006C4305 /* NSDate+ISO8601Unparsing.m in Sources */,
 				59A670A11C58678200CDD403 /* JLoginViewController.m in Sources */,
-				597061231C537A8000F246EC /* NSDate+ISO8601Unparsing.m in Sources */,
 				59A670921C57B64000CDD403 /* Contants.m in Sources */,
 				59A670801C579D4300CDD403 /* JGetProject.m in Sources */,
 				59B4D71F1C56606200BB0D58 /* JGetDepart.m in Sources */,
+				591299941C701EFF00D3EA2F /* JSCJHTableViewCell.m in Sources */,
 				591AF9EA1C5F41A300F56A8F /* JAddSCJHTableViewController.m in Sources */,
+				59738FA51C72AD58006C4305 /* USGlobals.m in Sources */,
 				59A670C31C5B462D00CDD403 /* JImagePickerHelper.m in Sources */,
 				59A6707C1C57640100CDD403 /* JUserTableViewCell.m in Sources */,
 				59A670BD1C5A490700CDD403 /* JAddUserTableViewController.m in Sources */,
@@ -623,7 +658,6 @@
 				59B4D71C1C56604A00BB0D58 /* JUpdateIMEI.m in Sources */,
 				59A670831C579D7700CDD403 /* JGetUserByMenu.m in Sources */,
 				597061321C537F1800F246EC /* JGetMenu.m in Sources */,
-				597061241C537A8000F246EC /* USAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

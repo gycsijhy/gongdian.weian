@@ -12,6 +12,8 @@
     NSMutableArray *resultArr;
     NSArray *select1Arr;
     NSArray *select2Arr;
+    NSMutableArray *selectdw;
+    NSMutableArray *selectry;
 }
 
 @end

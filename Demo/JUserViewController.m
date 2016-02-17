@@ -9,7 +9,7 @@
 #import "JUserViewController.h"
 #import "JGetUser.h"
 #import "MJRefresh.h"
-#import "User.h"
+#import "Users.h"
 #import "JUserTableViewCell.h"
 #import "JAddUserTableViewController.h"
 #import "JUserInfoTableViewController.h"
@@ -115,7 +115,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
 //                                      reuseIdentifier:SimpleTableIdentifier];
 //    }
-    User *user = [resultArr objectAtIndex:[indexPath row]];
+    Users *user = [resultArr objectAtIndex:[indexPath row]];
     
 //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    
@@ -129,7 +129,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    User *user = [resultArr objectAtIndex:[indexPath row]];
+    Users *user = [resultArr objectAtIndex:[indexPath row]];
     JUserInfoTableViewController *userInfoTVC = [[UIStoryboard storyboardWithName:@"Work" bundle:nil] instantiateViewControllerWithIdentifier:@"UserInfo"];
     userInfoTVC.user = user;
     [self.navigationController pushViewController:userInfoTVC animated:YES];

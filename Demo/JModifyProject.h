@@ -11,6 +11,6 @@
 
 @interface JModifyProject : NSObject
 
-- (void)modifyProject;
+- (void)modifyProject : (NSString *)action: (NSString *)json;
 
 @end

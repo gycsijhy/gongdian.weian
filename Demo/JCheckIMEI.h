@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "n_webservice.h"
-#import "User.h"
+#import "Users.h"
 
 @interface JCheckIMEI : NSObject
 

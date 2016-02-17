@@ -14,7 +14,7 @@
 - (void)settingDepart : (Depart *)depart {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"修改部门名称" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self addDepart :@"modify":depart];
+        [self addDepart :@"update":depart];
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

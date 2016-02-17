@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "UIContants.h"
 #import "JLoginHelper.h"
-#import "User.h"
+#import "Users.h"
 #import "BaiduMapAPI_Map/BMKMapComponent.h"
 
 @interface AppDelegate ()
@@ -26,7 +26,7 @@
     [self makeWindowVisible:launchOptions];
     
     _mapManager = [[BMKMapManager alloc] init];
-    BOOL ret = [_mapManager start:@"rvFt5aKt7deWbGwkoVoWMVw3" generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"rvFt5aKt7deWbGwkoVoWMVw3" generalDelegate:self];
     if (!ret) {
         NSLog(@"BaiduMap is not available!");
     }
@@ -38,9 +38,27 @@
     return YES;
 }
 
+- (void)onGetNetworkState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"联网成功");
+    } else {
+        NSLog(@"onGetNetworkState %d",iError);
+    }
+}
+
+- (void)onGetPermissionState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"授权成功");
+    } else {
+        NSLog(@"onGetPermissionState %d",iError);
+    }
+}
+
 - (BOOL)check {
     JLoginHelper *login = [[JLoginHelper alloc] init];
-    User *user = [login loginHelper];
+    Users *user = [login loginHelper];
     
 //    if ([[[arr objectAtIndex:0] objectForKey:@"imei"] isKindOfClass:[NSNull class]]) {
 //        return YES;

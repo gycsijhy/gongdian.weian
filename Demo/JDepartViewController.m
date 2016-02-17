@@ -29,11 +29,7 @@
 #pragma mark - setup TableView
 - (void)setupTableView {
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addDepartment)];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
-    backButton.title = @"取消";
     self.navigationItem.rightBarButtonItem = rightButton;
-    self.navigationItem.backBarButtonItem = backButton;
-    
 
     //添加列表
     myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 667)];

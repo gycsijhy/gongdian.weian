@@ -10,13 +10,13 @@
 
 @implementation JModifyUser
 
-- (void)modifyUser:(NSString *)action :(User *)user {
+- (void)modifyUser:(NSString *)action :(Users *)user {
     NSString *result = nil;
     n_webserviceSoap12Binding *binding = [n_webservice n_webserviceSoap12Binding];
     n_webservice_modify_users *request = [[n_webservice_modify_users alloc] init];
     request.action = action;
-    request.id_ = user.uid;
-    request.uids = user.uid;
+    request.id_ = user.uids;
+    request.uids = user.uids;
     request.uname = user.uname;
     request.pid = user.pid;
     request.pcode = user.pcode;

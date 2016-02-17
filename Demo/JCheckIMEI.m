@@ -28,7 +28,7 @@
     NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     NSArray *results = dict[@"items"];
-    NSValueTransformer *transformer = [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:User.class];
+    NSValueTransformer *transformer = [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Users.class];
     results = [transformer transformedValue:results];
     return results;
 }

@@ -9,7 +9,7 @@
 #import "JAddProjectTableViewController.h"
 #import "JImagePickerHelper.h"
 #import "JShowPhotoViewController.h"
-#import "User.h"
+#import "Users.h"
 
 @interface JAddProjectTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *locationText;
@@ -28,12 +28,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    UIBarButtonItem *rightButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto)];
+    UIBarButtonItem *rightButton2 = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(act)];
+    NSArray *rightButton = [[NSArray alloc] initWithObjects:rightButton2, rightButton1, nil];
+    self.navigationItem.rightBarButtonItems = rightButton;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    Users *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     self.kcryText.text = user.uname;
     
     self.scrollView.scrollsToTop = NO;
@@ -57,6 +59,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateMeView];
+}
+
+- (void) act {
+    
 }
 
 - (void)takePhoto {

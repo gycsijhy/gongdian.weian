@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Users.h"
 
-@interface MeTableViewController : UITableViewController
+
+
+@interface MeTableViewController : UITableViewController {
+    Users *user;
+    NSMutableArray *imageData;
+}
 
 
 @end

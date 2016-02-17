@@ -7,11 +7,15 @@
 //
 
 #import "JUserInfoTableViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface JUserInfoTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userDepartLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userPhoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sfzhLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rollLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userPhoto;
 
 @end
 
@@ -33,9 +37,18 @@
 }
 
 - (void)updateMeView {
+    _userPhoto.layer.masksToBounds = YES;
+    _userPhoto.layer.cornerRadius = 45;
+    [_userPhoto sd_setImageWithURL:[NSURL URLWithString:self.user.headurl] placeholderImage:[UIImage imageNamed:@"user"] options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        NSLog(@"oking");
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        NSLog(@"ok");
+    }];
     self.userNameLabel.text = self.user.uname;
     self.userDepartLabel.text = self.user.pname;
     self.userPhoneLabel.text = self.user.pcode;
+    self.sfzhLabel.text = self.user.uids;
+    self.rollLabel.text = self.user.urole;
     
     //        NSString *avatarHeight = [NSString stringWithFormat:@"%.f", _avatarImageView.frame.size.height * 2];
     //        NSURL *URL = [BaseHelper qiniuImageCenter:_userEntity.avatar withWidth:avatarHeight withHeight:avatarHeight];

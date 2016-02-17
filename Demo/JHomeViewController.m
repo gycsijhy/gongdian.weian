@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     webView =[[UIWebView alloc] init];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-69)];
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.wweian.com"]];
     webView.scalesPageToFit=YES;
     [self.view addSubview: webView];

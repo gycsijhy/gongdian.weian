@@ -12,7 +12,16 @@
 
 + (NSDictionary *) JSONKeyPathsByPropertyKey {
     return @{
-        @"iid":@"id"
+             @"uid":@"uids",
+             @"uname":@"uname",
+             @"urole":@"urole",
+             @"pid":@"pid",
+             @"pcode":@"pcode",
+             @"imei":@"imei",
+             @"pname":@"pname",
+             @"version":@"version",
+             @"iid":@"id",
+             @"headurl":@"headurl"
     };
 }
 

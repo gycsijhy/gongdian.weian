@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "n_webservice.h"
-#import "User.h"
+#import "Users.h"
 
 @interface JModifyUser : NSObject
 
-- (void)modifyUser :(NSString *)action :(User *)user;
+- (void)modifyUser :(NSString *)action :(Users *)user;
 
 @end

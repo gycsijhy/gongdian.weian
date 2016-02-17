@@ -10,8 +10,10 @@
 #import "JGetDepart.h"
 #import "Depart.h"
 #import "JGetUser.h"
-#import "User.h"
+#import "Users.h"
 #import "SHMultipleSelect.h"
+#import "Plan.h"
+#import "JModifyProject.h"
 
 @interface JAddSCJHTableViewController () <UITextFieldDelegate,SHMultipleSelectDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *gzddText;
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UITableViewCell *dzCell;
 
 @end
 
@@ -37,7 +40,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(act)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -62,13 +67,67 @@
     _datePicker.datePickerMode = UIDatePickerModeDate;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+//    CGRect rect = myTableView.frame;
+//    rect.size.width = self.view.frame.size.width;
+//    myTableView.frame = rect;
+    UITextField *text = [[UITextField alloc] init];
+    [_dzCell addSubview:text];
+    [_dzCell bringSubviewToFront:text];
+}
+
+- (void) act {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
+    Users *users = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    Plan *plan = [[Plan alloc] init];
+    plan.createuser = users.iid;
+    plan.createusername = users.uname;
+    plan.dw = _sgdwText.text;
+    plan.dz = _gzddText.text;
+    plan.flag = @"1";
+    plan.id = @"1";
+    plan.jssj = _endText.text;
+    plan.kssj = _startText.text;
+    plan.nr = _gznrText.text;
+    NSMutableArray *marr1 = [[NSMutableArray alloc] init];
+    NSMutableArray *marr2 = [[NSMutableArray alloc] init];
+    for (Depart *a in selectdw) {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@0,@"_id",@"1",@"id",a.pid,@"pid",a.pname,@"pname",@"xx",@"dz",nil];
+        [marr1 addObject:dict];
+        //plan.project_dw = [dict mutableCopy];
+    }
+    plan.project_dw = [marr1 mutableCopy];
+    for (Users *a in selectry) {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@0,@"_id",@"1",@"id",a.iid,@"uid",a.uname,@"username", nil];
+        [marr2 addObject:dict];
+    }
+    plan.project_ry = [marr2 mutableCopy];
+    plan.ry = _ryText.text;
+    plan.yf = [_startText.text substringToIndex:6];
+    
+    
+    NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:plan];
+//    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:nil error:nil];
+    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",json);
+    JModifyProject *mp = [[JModifyProject alloc] init];
+    [mp modifyProject:@"add" :json];
+}
+
 - (IBAction)done :(id)sender {
-    NSLog(@"%ld",(long)[sender tag]);
+//    NSLog(@"%ld",(long)[sender tag]);
     NSInteger i = [sender tag];
+    if (i == 11) {
+        [_gznrText endEditing:YES];
+    }
+    if (i == 12) {
+        [_gzddText endEditing:YES];
+    }
     if (i == 13) {
         [_startText endEditing:YES];
     }
-    else if (i == 14) {
+    if (i == 14) {
         [_endText endEditing:YES];
     }
 }
@@ -81,10 +140,19 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField.tag == 1001) {
+        _gznrText.inputAccessoryView = _toolBar;
+        UIBarButtonItem *item = [[_toolBar items] objectAtIndex:1];
+        item.tag = 11;
+    }
+    if (textField.tag == 1002) {
+        _gzddText.inputAccessoryView = _toolBar;
+        UIBarButtonItem *item = [[_toolBar items] objectAtIndex:1];
+        item.tag = 12;
+    }
     if (textField.tag == 1003) {
         _startText.inputView = _datePicker;
         _startText.inputAccessoryView = _toolBar;
-        NSLog(@"%@", [[_toolBar items] objectAtIndex:1]);
         UIBarButtonItem *item = [[_toolBar items] objectAtIndex:1];
         item.tag = 13;
     }
@@ -143,16 +211,6 @@
         [formatter setDateFormat:@"yyyy年MM月dd"];
         _endText.text = [formatter stringFromDate:[_datePicker date]];
     }
-    else if (i == 1005) {
-//        NSInteger row = [_pickerView selectedRowInComponent:0];
-//        Depart *depart = [resultArr objectAtIndex:row];
-//        _sgdwText.text = depart.pname;
-    }
-    else if (i == 1006) {
-//        NSInteger row = [_pickerView selectedRowInComponent:0];
-//        User *user = [resultArr objectAtIndex:row];
-//        _ryText.text = user.uname;
-    }
 }
 
 #pragma mark - SHMultipleSelectDelegate
@@ -160,19 +218,23 @@
     if (clickedBtnIndex == 1) { // Done btn
         NSString *string =@"";
         if (multipleSelectView.tag == 15) {
+            selectdw = [[NSMutableArray alloc] init];
             for (NSIndexPath *indexPath in selectedIndexPaths) {
                 //NSLog(@"%@", resultArr[indexPath.row]);
                 Depart *depart = resultArr[indexPath.row];
                 string = [string stringByAppendingFormat:@" %@ ,",depart.pname];
+                [selectdw addObject:depart];
             }
             select1Arr = selectedIndexPaths;
             _sgdwText.text = string;
         }
         else if (multipleSelectView.tag == 16) {
+            selectry = [[NSMutableArray alloc] init];
             for (NSIndexPath *indexPath in selectedIndexPaths) {
-                //NSLog(@"%@", resultArr[indexPath.row]);
-                User *user = resultArr[indexPath.row];
+//                NSLog(@"%@", resultArr[indexPath.row]);
+                Users *user = resultArr[indexPath.row];
                 string = [string stringByAppendingFormat:@" %@ ,",user.uname];
+                [selectry addObject:user];
             }
             select2Arr = selectedIndexPaths;
             _ryText.text = string;
@@ -187,7 +249,7 @@
         ret = depart.pname;
     }
     else if (multipleSelectView.tag == 16) {
-        User *user = resultArr[indexPath.row];
+        Users *user = resultArr[indexPath.row];
         ret = user.uname;
     }
     
@@ -221,6 +283,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return section == 0 ? 1.0f : UITableViewAutomaticDimension;
 }
+
+
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //

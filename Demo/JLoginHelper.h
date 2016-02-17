@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "User.h"
+#import "Users.h"
 
 @interface JLoginHelper : NSObject
 
-- (User *)loginHelper;
+- (Users *)loginHelper;
 
 - (NSString *)checkSFZH:(NSString *)sfzh;
 

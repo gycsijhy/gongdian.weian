@@ -7,7 +7,11 @@
 //
 
 #import "MeTableViewController.h"
-#import "User.h"
+#import "JUserInfoTableViewController.h"
+#import "JImagePickerHelper.h"
+#import "JUploadImageHelper.h"
+#import "JUrlHelper.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MeTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userPhotoView;
@@ -21,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sctx)];
+    [_userPhotoView addGestureRecognizer:singleTap];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -29,20 +36,61 @@
     self.tableView.contentInset = UIEdgeInsetsMake(-1.0f, 0.0f, 0.0f, 0.0);
 }
 
+- (void) sctx {
+    JImagePickerHelper *imagePicker = [[JImagePickerHelper alloc] init];
+    imagePicker.hostViewController = self;
+    [imagePicker takePhoto];
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateMeView];
 }
 
 - (void)updateMeView {
+    _userPhotoView.layer.masksToBounds = YES;
+    _userPhotoView.layer.cornerRadius = 30;
+    NSData *image = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSERPHOTO"];
+    [_userPhotoView setImage:[UIImage imageWithData:image]];
+//    [_userPhotoView sd_setImageWithURL:[NSURL URLWithString:user.headurl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        [_userPhotoView setImage:image];
+//        NSLog(@"ok");
+//    }];
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     self.userNameLabel.text = user.uname;
     self.userDepartLabel.text = user.pname;
 
 //        NSString *avatarHeight = [NSString stringWithFormat:@"%.f", _avatarImageView.frame.size.height * 2];
 //        NSURL *URL = [BaseHelper qiniuImageCenter:_userEntity.avatar withWidth:avatarHeight withHeight:avatarHeight];
 //        [_avatarImageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary<NSString *,id> *)editingInfo {
+    //    for (id i in imageData) {
+    //        self.imageView.image = [UIImage imageWithData:i];
+    //    }
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"JUSERPHOTO"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    imageData = [NSMutableArray array];
+    [imageData addObject:data];
+    //NSLog(@"%lu",(unsigned long)imageData.count);
+    [_userPhotoView setImage:[UIImage imageWithData:data]];
+    JUploadImageHelper *uploadImage = [[JUploadImageHelper alloc] init];
+    uploadImage.imageData = imageData;
+    [uploadImage uploadImages:^(NSDictionary *returnDict) {
+        NSLog(@"%@",returnDict);
+        JUrlHelper *helper = [[JUrlHelper alloc] init];
+        helper.dict = returnDict;
+        user.headurl = [helper urlParse];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"JUSER"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [helper modifyUserHeader:user.iid];
+    }];
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +109,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 1) {
+        JUserInfoTableViewController *vc = [[UIStoryboard storyboardWithName:@"Work" bundle:nil] instantiateViewControllerWithIdentifier:@"UserInfo"];
+        vc.user = user;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 /*

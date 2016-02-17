@@ -13,9 +13,9 @@
 #import "JDepartViewController.h"
 #import "JUserViewController.h"
 #import "Contants.h"
-#import "User.h"
+#import "Users.h"
 #import "JAddProjectTableViewController.h"
-#import "JAddSCJHTableViewController.h"
+#import "JPlanViewController.h"
 
 @interface JWorkViewController ()
 
@@ -58,12 +58,12 @@
 
 - (void)headerRefreshingText {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    Users *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         JGetMenu *getMenu = [[JGetMenu alloc] init];
         //JHY
-        resultArr = [getMenu getMenu:user.uid];
+        resultArr = [getMenu getMenu:user.uids];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [myTableView headerEndRefreshing];
@@ -131,7 +131,7 @@
         [self.navigationController pushViewController: vc animated:YES];
     }
     else if ([menu.iid isEqualToString:@"201"]) {
-        JAddSCJHTableViewController *vc = [[UIStoryboard storyboardWithName:@"Work" bundle:nil] instantiateViewControllerWithIdentifier:@"AddSCJH"];
+        JPlanViewController *vc = [[JPlanViewController alloc] init];
         [self.navigationController pushViewController: vc animated:YES];
     }
     
