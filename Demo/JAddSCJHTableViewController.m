@@ -112,7 +112,7 @@
     NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSLog(@"%@",json);
     JModifyProject *mp = [[JModifyProject alloc] init];
-    [mp modifyProject:@"add" :json];
+    [mp modifyProject:@"add":json];
 }
 
 - (IBAction)done :(id)sender {
