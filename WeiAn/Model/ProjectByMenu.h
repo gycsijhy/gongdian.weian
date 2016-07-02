@@ -31,6 +31,6 @@
 @property (nonatomic, copy) NSString *xk_pid;
 @property (nonatomic, copy) NSString *createusername;
 @property (nonatomic, copy) NSString *xkdw;
-@property (nonatomic, copy) ProMenu *project_menu;
+@property (nonatomic, copy) NSArray<ProMenu *> *project_menu;
 
 @end

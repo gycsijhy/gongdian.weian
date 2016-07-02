@@ -99,16 +99,14 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     SSVCell *cell = (SSVCell *)[tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
     
     project *pro = [resultArr objectAtIndex:[indexPath row]];
-    NSValueTransformer *transformer = [MTLJSONAdapter arrayTransformerWithModelClass:project_dw.class ];
     NSArray *arr = pro.project_dw;
     NSString *string =@"";
-    arr = [transformer transformedValue:arr];
     for (id mine in arr) {
         project_dw *pro_dw = mine;
         //NSLog(@"%@",pro_dw.fzrxm);
         string =[NSString stringWithFormat:@"%@%@%@%@%@ ",string,pro_dw.pname,@"(",pro_dw.fzrxm,@")"];
     }
-    
+
     cell.gcbh.text = [NSString stringWithFormat:@"%@ %@%@%@",pro.id_,@"(",pro.yf,@")"];
     cell.xmmc.text = pro.mc;
     cell.gzsj.text = [NSString stringWithFormat:@"%@%@%@", pro.kssj,@"~",pro.jssj];
@@ -128,6 +126,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     vc.menu_id = self.menu_id;
     vc.myTitle = self.myTitle;
     vc.pro = pro;
+    vc.bz =@"1";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

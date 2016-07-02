@@ -16,6 +16,7 @@
 #import "ProJd.h"
 
 static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+int x = 0;
 
 @interface ProjectAllViewController ()
 
@@ -34,7 +35,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 
 #pragma mark - setup TableView
 - (void)setupTableview{
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-49)];
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
@@ -52,8 +53,8 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     
     myTableView.headerRefreshingText = @"刷新 ......";
     myTableView.headerPullToRefreshText = @"刷新";
-    myTableView.footerRefreshingText = @"刷新";
-    myTableView.footerPullToRefreshText = @"刷新 ......";
+    myTableView.footerRefreshingText = @"加载......";
+    myTableView.footerPullToRefreshText = @"加载更多";
 }
 
 - (void)headerRefreshingText {
@@ -62,7 +63,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         JNetWorkHelper *helper = [[JNetWorkHelper alloc] init];
-        resultArr = [NSMutableArray arrayWithArray:[helper getProjectAll:user.iid:@"0" :@"50" :[NSString stringWithFormat:@"%@%@",identifierNumber,bbh]]];
+        resultArr = [NSMutableArray arrayWithArray:[helper getProjectAll:user.iid:@"0" :@"9" :[NSString stringWithFormat:@"%@%@",identifierNumber,bbh]]];
         for (int i = 0; i<[resultArr count]; i++) {
             project *pro = [resultArr objectAtIndex:i];
             if (pro.id_ == nil) {
@@ -71,14 +72,30 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [myTableView headerEndRefreshing];
-            [myTableView footerEndRefreshing];
             [myTableView reloadData];
         });
     });
 }
 
 - (void)footerRefreshingText {
-    [myTableView reloadData];
+    x+=1;
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"JUSER"];
+    Users *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        JNetWorkHelper *helper = [[JNetWorkHelper alloc] init];
+        [resultArr addObjectsFromArray:[helper getProjectAll:user.iid:[NSString stringWithFormat:@"%d",x*10]:[NSString stringWithFormat:@"%d",x*10+9]:[NSString stringWithFormat:@"%@%@",identifierNumber,bbh]]];
+        for (int i = 0; i<[resultArr count]; i++) {
+            project *pro = [resultArr objectAtIndex:i];
+            if (pro.id_ == nil) {
+                [resultArr removeObjectAtIndex:i];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myTableView footerEndRefreshing];
+            [myTableView reloadData];
+        });
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -98,7 +115,9 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.isOpen) {
         if (self.selectIndex.section==section) {
-            return 2;
+            project *pro = [resultArr objectAtIndex:section];
+            NSArray *arr = pro.project_dw;
+            return [arr count]+1;
         }
     }
     return 1;
@@ -121,27 +140,31 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     project *pro = [resultArr objectAtIndex:[indexPath section]];
-    NSValueTransformer *transformer = [MTLJSONAdapter arrayTransformerWithModelClass:project_dw.class ];
     NSArray *arr = pro.project_dw;
-    arr = [transformer transformedValue:arr];
-    project_dw *pro_dw = [arr objectAtIndex:0];
+    
     if (self.isOpen&&self.selectIndex.section ==indexPath.section && indexPath.row !=0) {
+        project_dw *pro_dw = [arr objectAtIndex:[indexPath row]-1];
         static NSString *cellIdentifier = @"DetailCell";
         DetailCell *cell =(DetailCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell==nil){
             cell=[[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex:0];
         }
+        //NSLog(@"%@",pro_dw.fzrxm);
+        NSString *string =[NSString stringWithFormat:@"%@%@%@%@ ",pro_dw.pname,@"(",pro_dw.fzrxm,@")"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.hostViewController = self;
-        cell.pro = pro;
-        cell.label1.text = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",pro_dw.pname,@"(",pro_dw.fzrxm,@")",@"于 ",pro.dz,@" 施工"];
+        cell.pro_id = pro.id_;
+        cell.label1.text = [NSString stringWithFormat:@"%@%@%@%@",string,@"于 ",pro_dw.dz,@" 施工"];
         cell.label2.text = [NSString stringWithFormat:@"%@%@",@"许可部门：",pro.xkdw];
         cell.label3.text = [NSString stringWithFormat:@"%@%@",@"到岗到位：",pro.ry];
-        NSValueTransformer *transformer2 = [MTLJSONAdapter arrayTransformerWithModelClass:ProJd.class];
+        cell.kanc.tag = [indexPath row]-1;
+        cell.kaig.tag = [indexPath row]-1;
+        cell.daog.tag = [indexPath row]-1;
+        cell.duc.tag = [indexPath row]-1;
+        cell.wang.tag = [indexPath row]-1;
         NSArray *arr2 = pro_dw.project_jd;
-        arr2= [transformer2 transformedValue:arr2];
-        for (id mine in arr2) {
-            ProJd *pro_jd = mine;
+        for (int i = 0;i<[arr2 count];i++) {
+            ProJd *pro_jd = [arr2 objectAtIndex:i];
             if ([pro_jd.bm isEqualToString:@"勘查"]) {
                 cell.kanc.backgroundColor = [UIColor greenColor];
             }
@@ -176,6 +199,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     project *pro = [resultArr objectAtIndex:[indexPath section]];
+    NSArray *arr = pro.project_dw;
     if (indexPath.row == 0) {
         if ([indexPath isEqual:self.selectIndex]) {
             self.isOpen = NO;
@@ -199,7 +223,10 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     }else
     {
         ProjectDetailViewController *vc = [[ProjectDetailViewController alloc] init];
-        vc.pro = pro;
+        vc.pro = [arr objectAtIndex:[indexPath row]-1];
+        vc.bz = @"1";
+        vc.myTitle = @"工程进度";
+        vc.str = [NSString stringWithFormat:@"%@ %@\n%@ ~ %@\n%@",pro.id_,pro.mc,pro.kssj,pro.jssj,pro.nr];
         [self.navigationController pushViewController: vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -216,7 +243,9 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     
     int section = (int)self.selectIndex.section;
     //int contentCount = [[[resultArr objectAtIndex:section] objectForKey:@"list"] count];
-    int contentCount =1;
+    project *pro = [resultArr objectAtIndex:section];
+    NSArray *arr = pro.project_dw;
+    int contentCount =(int)[arr count];
     NSMutableArray* rowToInsert = [[NSMutableArray alloc] init];
     for (NSUInteger i = 1; i < contentCount + 1; i++) {
         NSIndexPath* indexPathToInsert = [NSIndexPath indexPathForRow:i inSection:section];

@@ -13,7 +13,7 @@
 #import "Depart.h"
 #import "UUInputAccessoryView.h"
 #import "Users.h"
-#import "iToast.h"
+//#import "iToast.h"
 
 static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 static NSString *SimpleTableIdentifier2 = @"SimpleTableIdentifier2";
@@ -40,20 +40,34 @@ static NSString *SimpleTableIdentifier2 = @"SimpleTableIdentifier2";
     arrDW1 = [[NSMutableArray alloc] init];
     if (self.prox.id_.length >2) {
         self.pro = self.prox;
+        for (project_dw *prodw in self.prox.project_dw) {
+            ProDW *pw = [[ProDW alloc] init];
+            pw._id = 0;
+            pw.id = prodw.id;
+            pw.dz = prodw.dz;
+            pw.fzr = prodw.fzr;
+            pw.fzrxm = prodw.fzrxm;
+            pw.pid = prodw.pid;
+            pw.pname = prodw.pname;
+            [arrDW addObject:pw];
+        }
+        self.pro.project_dw = arrDW;
         kgxk = self.prox.xkdw;
         dgdw = self.prox.ry;
-        arrRY1 = [NSMutableArray arrayWithArray:self.prox.project_ry];
-        for (int i = 0; i<arrRY1.count; i++) {
-            NSDictionary *dict = [arrRY1 objectAtIndex:i];
-            project_ry *pro_ry = [MTLJSONAdapter modelOfClass:project_ry.class fromJSONDictionary:dict error:nil];
-            [arrRY addObject:pro_ry];
-        }
-        arrDW1 = [NSMutableArray arrayWithArray:self.prox.project_dw];
-        for (int i = 0; i<arrDW1.count; i++) {
-            NSDictionary *dict = [arrDW1 objectAtIndex:i];
-            ProDW *pro_dw = [MTLJSONAdapter modelOfClass:ProDW.class fromJSONDictionary:dict error:nil];
-            [arrDW addObject:pro_dw];
-        }
+        arrRY = [NSMutableArray arrayWithArray:self.prox.project_ry];
+//        arrRY1 = [NSMutableArray arrayWithArray:self.prox.project_ry];
+//        for (int i = 0; i<arrRY1.count; i++) {
+//            NSDictionary *dict = [arrRY1 objectAtIndex:i];
+//            project_ry *pro_ry = [MTLJSONAdapter modelOfClass:project_ry.class fromJSONDictionary:dict error:nil];
+//            [arrRY addObject:pro_ry];
+//        }
+        //arrDW = [NSMutableArray arrayWithArray:self.prox.project_dw];
+//        arrDW1 = [NSMutableArray arrayWithArray:self.prox.project_dw];
+//        for (int i = 0; i<arrDW1.count; i++) {
+//            NSDictionary *dict = [arrDW1 objectAtIndex:i];
+//            ProDW *pro_dw = [MTLJSONAdapter modelOfClass:ProDW.class fromJSONDictionary:dict error:nil];
+//            [arrDW addObject:pro_dw];
+//        }
         for (ProDW *pro_dw in arrDW) {
             [mDictDW setObject:pro_dw forKey:pro_dw.pid];
         }
@@ -66,40 +80,40 @@ static NSString *SimpleTableIdentifier2 = @"SimpleTableIdentifier2";
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd hh:mm"];
     if (self.pro.mc == nil ) {
-        [[[iToast makeText:NSLocalizedString(@"请选择项目名称！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择项目名称！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.nr == nil) {
-        [[[iToast makeText:NSLocalizedString(@"请输入工作内容！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请输入工作内容！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.kssj == nil) {
-        [[[iToast makeText:NSLocalizedString(@"请选择开始时间！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择开始时间！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.jssj == nil) {
-        [[[iToast makeText:NSLocalizedString(@"请选择结束时间！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择结束时间！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if ([[df dateFromString:self.pro.jssj] compare:[df dateFromString:self.pro.kssj]] != NSOrderedDescending) {
-        [[[iToast makeText:NSLocalizedString(@"结束时间不能早于开始时间！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"结束时间不能早于开始时间！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.dw == nil) {
-        [[[iToast makeText:NSLocalizedString(@"请选择施工单位！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择施工单位！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.ry.length == 0) {
-        [[[iToast makeText:NSLocalizedString(@"请选择到岗到位人员！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择到岗到位人员！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if (self.pro.xk_pid == nil) {
-        [[[iToast makeText:NSLocalizedString(@"请选择开完工许可单位！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请选择开完工许可单位！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else if ([arrDW count]!=[departSelected count]){
-        [[[iToast makeText:NSLocalizedString(@"请完善工作地点和工程负责人！", @"")]
-          setGravity:iToastGravityBottom] show];
+//        [[[iToast makeText:NSLocalizedString(@"请完善工作地点和工程负责人！", @"")]
+//          setGravity:iToastGravityBottom] show];
     }
     else {
         self.pro.flag = @"1";
@@ -109,29 +123,29 @@ static NSString *SimpleTableIdentifier2 = @"SimpleTableIdentifier2";
         for (ProDW *pro_dw in arrDW) {
             if (pro_dw.fzrxm == nil) {
                 NSString *str = [NSString stringWithFormat:@"%@%@%@",@"请选择",pro_dw.pname,@"工作负责人！"];
-                [[[iToast makeText:NSLocalizedString(str, @"")]
-                  setGravity:iToastGravityBottom] show];
+//                [[[iToast makeText:NSLocalizedString(str, @"")]
+//                  setGravity:iToastGravityBottom] show];
                 return;
             }
             else if (pro_dw.dz == nil) {
                 NSString *str = [NSString stringWithFormat:@"%@%@%@",@"请输入",pro_dw.pname,@"工作地点！"];
-                [[[iToast makeText:NSLocalizedString(str, @"")]
-                  setGravity:iToastGravityBottom] show];
+//                [[[iToast makeText:NSLocalizedString(str, @"")]
+//                  setGravity:iToastGravityBottom] show];
                 return;
             }
             else{
-                [arrDW1 addObject:[MTLJSONAdapter JSONDictionaryFromModel:pro_dw error:nil]];
+                //[arrDW1 addObject:[MTLJSONAdapter JSONDictionaryFromModel:pro_dw error:nil]];
                 string = [string stringByAppendingFormat:@"%@、",pro_dw.dz];
             }
         }
         self.pro.dz = [string substringToIndex:[string length]-1];
-        self.pro.project_dw = arrDW1;
-        for (project_ry *user in arrRY) {
-            [arrRY1 addObject:[MTLJSONAdapter JSONDictionaryFromModel:user error:nil]];
-        }
-        self.pro.project_ry = arrRY1;
+        self.pro.project_dw = arrDW;
+//        for (project_ry *user in arrRY) {
+//            [arrRY1 addObject:[MTLJSONAdapter JSONDictionaryFromModel:user error:nil]];
+//        }
+        self.pro.project_ry = arrRY;
         
-        //NSLog(@"%@",self.pro);
+        NSLog(@"%@",self.pro);
         NSString *json = [self getJson:self.pro];
         //NSLog(@"%@",json);
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -141,15 +155,15 @@ static NSString *SimpleTableIdentifier2 = @"SimpleTableIdentifier2";
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ([result isEqualToString:@"1"]) {
                     self.navigationItem.rightBarButtonItem.enabled = false;
-                    [[[iToast makeText:NSLocalizedString(@"计划上传成功！", @"")]
-                      setGravity:iToastGravityBottom] show];
+//                    [[[iToast makeText:NSLocalizedString(@"计划上传成功！", @"")]
+//                      setGravity:iToastGravityBottom] show];
                     //[self dismissViewControllerAnimated:YES completion:nil];
                     [NSThread sleepForTimeInterval:1.0f];
                     [[self navigationController] popViewControllerAnimated:YES];
                 }
                 else {
-                    [[[iToast makeText:NSLocalizedString(@"上传计划失败！", @"")]
-                      setGravity:iToastGravityBottom] show];
+//                    [[[iToast makeText:NSLocalizedString(@"上传计划失败！", @"")]
+//                      setGravity:iToastGravityBottom] show];
                 }
             });
         });

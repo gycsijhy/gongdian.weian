@@ -19,12 +19,33 @@
 @implementation AppDelegate
 
 
+- (void)reachabilityChanged :(NSNotification *)note {
+    Reachability *currentReach = [note object];
+    NSParameterAssert([currentReach isKindOfClass:[Reachability class]]);
+    NetworkStatus status = [currentReach currentReachabilityStatus];
+    if (status == NotReachable) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"赣榆微安"
+//                                                        message:@"NotReachable"
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"YES" otherButtonTitles:nil];
+//        [alert show];
+                UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"提示" message:@"服务器连接失败，请检查网络设置\n应用程序将关闭" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    exit(0);
+                }];
+                [ac addAction:okAction];
+                [self.window.rootViewController presentViewController:ac animated:YES completion:nil];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NSThread sleepForTimeInterval:1.0];
-    
+    //[NSThread sleepForTimeInterval:1.0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    hostReach = [Reachability reachabilityWithHostName:@"www.gyhrss.com"];
+    [hostReach startNotifier];
+
     [self makeWindowVisible:launchOptions];
-    
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"SjGeO7CVdCZP1WHDUzAONHgS6mBRGi1t" generalDelegate:self];
     if (!ret) {
@@ -57,23 +78,22 @@
 }
 
 - (BOOL)check {
-    JNetWorkHelper *helper = [[JNetWorkHelper alloc] init];
-    Users *user = [helper checkIMEI:identifierNumber];
-    
-//    if ([[[arr objectAtIndex:0] objectForKey:@"imei"] isKindOfClass:[NSNull class]]) {
-//        return YES;
-//    }
-//    else {
-//        return NO;
-//    }
-    if (user.imei == nil) {
-        return YES;
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    if ([reach currentReachabilityStatus] == NotReachable) {
+        return NO;
     }
     else {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"JUSER"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        return NO;
+        JNetWorkHelper *helper = [[JNetWorkHelper alloc] init];
+        Users *user = [helper checkIMEI:identifierNumber];
+        if (user.imei == nil) {
+            return YES;
+        }
+        else {
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"JUSER"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            return NO;
+        }
     }
 }
 
@@ -99,7 +119,7 @@
 
 - (void)showLanuchView {
     _mySplashView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [_mySplashView1 setImage:[UIImage imageNamed:@"background_"]];
+    [_mySplashView1 setImage:[UIImage imageNamed:@"background2_"]];
     [self.window addSubview:_mySplashView1];
     [self.window bringSubviewToFront:_mySplashView1];
     

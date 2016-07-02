@@ -22,11 +22,11 @@
 @property (nonatomic, readonly) NSString *menu;
 @property (nonatomic, readonly) NSString *bm;
 @property (nonatomic, readonly) NSString *lb;
-@property (nonatomic, readonly) NSString *dwf;
-@property (nonatomic, readonly) NSString *dwq;
-@property (nonatomic, readonly) NSString *ryf;
-@property (nonatomic, readonly) NSString *ryq;
+@property (nonatomic, readonly) NSNumber *dwf;
+@property (nonatomic, readonly) NSNumber *dwq;
+@property (nonatomic, readonly) NSNumber *ryf;
+@property (nonatomic, readonly) NSNumber *ryq;
 @property (nonatomic, readonly) NSString *sfgs;
 @property (nonatomic, readonly) NSString *pname;
-@property (nonatomic, readonly) NSArray *project_photo;
+@property (nonatomic, readonly) NSArray<ProPhoto *> *project_photo;
 @end

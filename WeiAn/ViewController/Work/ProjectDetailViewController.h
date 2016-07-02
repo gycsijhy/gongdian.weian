@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "project.h"
+#import "project_dw.h"
+#import "projectsp.h"
 
 @interface ProjectDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     UITableView *myTableView;
@@ -15,6 +16,10 @@
 }
 
 @property (nonatomic, retain) NSMutableDictionary *marr;
-@property (strong,nonatomic) project *pro;
+@property (strong,nonatomic) project_dw *pro;
+@property (strong,nonatomic) projectsp *pro_sp;
+@property (strong,nonatomic) NSString *bz;
+@property (nonatomic,strong) NSString *myTitle;
+@property (strong,nonatomic) NSString *str;
 
 @end

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *daog;
 @property (weak, nonatomic) IBOutlet UIButton *duc;
 @property (weak, nonatomic) IBOutlet UIButton *wang;
-@property (strong, nonatomic) project *pro;
+@property (strong, nonatomic) NSString *pro_id;
 @property (weak, nonatomic) UIViewController *hostViewController;
 
 - (IBAction)kanc:(id)sender;

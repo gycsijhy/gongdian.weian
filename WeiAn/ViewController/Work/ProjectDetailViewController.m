@@ -26,7 +26,7 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"工程进度";
+    self.title = self.myTitle;
     _marr = [[NSMutableDictionary alloc] init];
     [self setupTableview];
 }
@@ -59,14 +59,13 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 - (void)headerRefreshingText {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        NSValueTransformer *transformer = [MTLJSONAdapter arrayTransformerWithModelClass:project_dw.class ];
-        NSArray *arr = self.pro.project_dw;
-        arr = [transformer transformedValue:arr];
-        project_dw *pro_dw = [arr objectAtIndex:0];
-        NSValueTransformer *transformer2 = [MTLJSONAdapter arrayTransformerWithModelClass:ProJd.class ];
-        NSArray *arr2 = pro_dw.project_jd;
-        resultArr = [transformer2 transformedValue:arr2];
-        
+        if ([self.bz isEqualToString:@"1"]) {
+            project_dw *pro_dw = self.pro;
+            resultArr =[NSMutableArray arrayWithArray:pro_dw.project_jd];
+        }
+        if ([self.bz isEqualToString:@"2"]) {
+            resultArr = [NSMutableArray arrayWithObjects:self.pro_sp.project_jd,nil] ;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [myTableView headerEndRefreshing];
             [myTableView footerEndRefreshing];
@@ -90,12 +89,26 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 }
 
 #pragma mark - TableView Delegate
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel *lbl = [[UILabel alloc] init];
+    lbl.textAlignment = NSTextAlignmentCenter;
+    lbl.text = self.str;
+    lbl.font = [UIFont boldSystemFontOfSize:14];
+    lbl.numberOfLines = 0;
+    lbl.lineBreakMode = NSLineBreakByWordWrapping;
+    return lbl;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1.0f];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [resultArr count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1.0f;
+    return 63.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,12 +118,9 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AllCell *cell = (AllCell *)[tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    ProJd *pro = [resultArr objectAtIndex:[indexPath row]];
+    ProJd *pro_jd = [resultArr objectAtIndex:[indexPath row]];
     NSInteger x = [indexPath row]+1;
-    NSValueTransformer *transformer = [MTLJSONAdapter arrayTransformerWithModelClass:ProPhoto.class ];
-    NSArray *arr = pro.project_photo;
-
-    arr = [transformer transformedValue:arr];
+    NSArray *arr = pro_jd.project_photo;
     if (arr.count>0) {
         cell.scrollView.hidden = NO;
         for (int i=0; i<arr.count; i++) {
@@ -129,16 +139,16 @@ static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
                 UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:  @selector(cz:)];
                 singleTap.view.opaque = NO;
                 [thumbView addGestureRecognizer:singleTap];
-                NSObject *obj =[singleTap view].description;
+                //NSObject *obj =[singleTap view].description;
                 //[_marr setObject:pro forKey:[singleTap view].description];
                 [_marr setObject:pro forKey:[NSString stringWithFormat: @"%ld",(long)thumbView.tag]];
             }
         }
     }
 
-    cell.label1.text = [NSString stringWithFormat:@"%@ %@",pro.menu,pro.createtime];
-    cell.label2.text = [NSString stringWithFormat:@"%@ %@",pro.pname,pro.uname];
-    cell.label3.text = [NSString stringWithFormat:@"%@ %@",@"描述",pro.nr];
+    cell.label1.text = [NSString stringWithFormat:@"%@ %@",pro_jd.menu,pro_jd.createtime];
+    cell.label2.text = [NSString stringWithFormat:@"%@ %@",pro_jd.pname,pro_jd.uname];
+    cell.label3.text = [NSString stringWithFormat:@"%@ %@",@"描述",pro_jd.nr];
     return cell;
 }
 

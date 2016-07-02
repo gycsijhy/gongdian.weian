@@ -9676,11 +9676,11 @@
 }
 + (n_webserviceSoapBinding *)n_webserviceSoapBinding
 {
-	return [[[n_webserviceSoapBinding alloc] initWithAddress:@"http://172.20.1.53:88/pb_webservice/n_webservice.asmx"] autorelease];
+	return [[[n_webserviceSoapBinding alloc] initWithAddress:@"http://218.92.49.18:88/pb_webservice/n_webservice.asmx"] autorelease];
 }
 + (n_webserviceSoap12Binding *)n_webserviceSoap12Binding
 {
-	return [[[n_webserviceSoap12Binding alloc] initWithAddress:@"http://172.20.1.53:88/pb_webservice/n_webservice.asmx"] autorelease];
+	return [[[n_webserviceSoap12Binding alloc] initWithAddress:@"http://218.92.49.18:88/pb_webservice/n_webservice.asmx"] autorelease];
 }
 @end
 @implementation n_webserviceSoapBinding

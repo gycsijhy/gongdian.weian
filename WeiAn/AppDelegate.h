@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 #import "BaseTabBarController.h"
 #import "BaiduMapAPI_Base/BMKMapManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate> {
     BMKMapManager *_mapManager;
+    Reachability *hostReach;
 }
 
 @property (strong, nonatomic) UIWindow *window;

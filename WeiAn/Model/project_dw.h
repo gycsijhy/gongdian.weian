@@ -7,6 +7,7 @@
 //
 
 #import <Mantle/Mantle.h>
+#import "ProJd.h"
 
 @interface project_dw : MTLModel<MTLJSONSerializing>
 
@@ -20,5 +21,5 @@
 @property (nonatomic, copy) NSString *latitude;
 @property (nonatomic, copy) NSString *fzr;
 @property (nonatomic, copy) NSString *fzrxm;
-@property (nonatomic, copy) NSArray *project_jd;
+@property (nonatomic, copy) NSArray<ProJd *> *project_jd;
 @end

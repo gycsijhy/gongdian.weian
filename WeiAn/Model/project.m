@@ -20,7 +20,7 @@
              @"flag":@"flag",
              @"createtime":@"createtime",
              @"createuser":@"createuser",
-             @"flag_id":@"flag_id",
+             @"flag_jd":@"flag_jd",
              @"dw":@"dw",
              @"ry":@"ry",
              @"createusername":@"createusername",
@@ -30,6 +30,32 @@
              @"project_dw":@"project_dw",
              @"project_ry":@"project_ry"
              };
+}
++(NSValueTransformer *) project_dwJSONTransformer {
+    //return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:ProMenu.class];
+    //return [MTLJSONAdapter dictionaryTransformerWithModelClass:[ProMenu class]];
+//    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+//        //return [MTLJSONAdapter modelOfClass:project_dw.class fromJSONDictionary:[value firstObject] error:nil];
+//        return [MTLJSONAdapter modelsOfClass:project_dw.class fromJSONArray:value error:nil];
+//    }];
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter modelsOfClass:project_dw.class fromJSONArray:value error:nil];
+    } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter JSONArrayFromModels:value error:nil];
+    }];
+}
++(NSValueTransformer *) project_ryJSONTransformer {
+    //return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:ProMenu.class];
+    //return [MTLJSONAdapter dictionaryTransformerWithModelClass:[ProMenu class]];
+//    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+//        //return [MTLJSONAdapter modelOfClass:project_ry.class fromJSONDictionary:[value firstObject] error:nil];
+//        return [MTLJSONAdapter modelsOfClass:project_ry.class fromJSONArray:value error:nil];
+//    }];
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter modelsOfClass:project_ry.class fromJSONArray:value error:nil];
+    } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter JSONArrayFromModels:value error:nil];
+    }];
 }
 
 @end
